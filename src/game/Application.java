@@ -33,7 +33,7 @@ public class Application {
 		gameMap = new GameMap(groundFactory, map);
 		world.addMap(gameMap);
 		
-		Actor player = new Player("Player", '@', 1, 100);
+		Actor player = new NewPlayer("Player", '@', 1, 100);
 		world.addPlayer(player, gameMap, 2, 2);
 		
 		Grunt grunt = new Grunt("Mongo", player);
@@ -45,5 +45,6 @@ public class Application {
 		gameMap.addActor(goon,  8, 10);
 			
 		world.run();
+		
 	}
 }

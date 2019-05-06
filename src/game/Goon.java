@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 
-public class Goon extends Actor {
+public class Goon extends NewActor {
 	
 	private Display display;
 	private Actor target;
@@ -50,9 +50,6 @@ public class Goon extends Actor {
 		
 		return super.playTurn(actions,  map,  display);
 	}
-
-	
-	
 	
 	
 }

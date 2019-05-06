@@ -15,7 +15,7 @@ import edu.monash.fit2099.engine.WeaponItem;
  */
 public class StunPowder extends WeaponItem implements Throwable{
 	
-	private Actor subject;
+	private NewActor subject;
 	
 	/**
 	 * The constructor
@@ -24,9 +24,9 @@ public class StunPowder extends WeaponItem implements Throwable{
 	 * 
 	 */
 
-	public StunPowder(Actor subjectActor) {
+	public StunPowder(NewActor subjectActor) {
 		super("Stun Powder",'s', 0, "stunned");
-		subject = subjectActor;
+		subject =subjectActor;
 		
 	}
 
@@ -56,7 +56,8 @@ public class StunPowder extends WeaponItem implements Throwable{
 
 	@Override
 	public void affect() {
-		//not yet implemented 
+		subject.beStunned();
+		
 		
 		
 	}

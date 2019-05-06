@@ -8,7 +8,7 @@ import java.util.List;
 
 
 
-public class Grunt extends Actor {
+public class Grunt extends NewActor {
 
 	// Grunts have 50 hitpoints and are always represented with a g
 	public Grunt(String name, Actor player) {
@@ -32,4 +32,6 @@ public class Grunt extends Actor {
 		
 		return super.playTurn(actions,  map,  display);
 	}
+	
+
 }
