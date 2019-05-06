@@ -21,7 +21,6 @@ public class Throw extends Action{
 	}
 	
 	
-	
 	@Override
 	public String execute(Actor actor, GameMap map) {
 

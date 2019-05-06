@@ -17,9 +17,6 @@ public class StunPowder extends WeaponItem implements Throwable{
 	
 	private Actor subject;
 	
-	
-	
-
 	/**
 	 * The constructor
 	 *
