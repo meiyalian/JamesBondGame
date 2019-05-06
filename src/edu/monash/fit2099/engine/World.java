@@ -110,7 +110,6 @@ public class World {
 				actions.add(adjacentGround.getMoveAction(actor, destination, exit.getName(), exit.getHotKey()));
 			}
 		}
-
 		for (Item item : here.getItems()) {
 			actions.add(item.getAllowableActions());
 		}

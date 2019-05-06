@@ -9,7 +9,7 @@
 //
 //	public Ninja(String name, Actor player) {
 //		super(name,'n', 10, 20);
-//		addBehaviour(new FollowBehaviour(player));
+//	
 //	}
 //
 //	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
