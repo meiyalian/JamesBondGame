@@ -43,14 +43,12 @@ public class Throw extends Action{
 
 	@Override
 	public String menuDescription(Actor actor) {
-		// TODO Auto-generated method stub
-		return null;
+		return "Throw " + item.toString() + " to " + subject.toString();
 	}
 
 	@Override
 	public String hotKey() {
-		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 }
