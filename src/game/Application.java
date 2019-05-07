@@ -44,8 +44,12 @@ public class Application {
 		Goon goon = new Goon("goon", player);
 		gameMap.addActor(goon,  8, 10);
 		
-		Ninja n = new Ninja("nin",player);
+		Ninja n = new Ninja("ninja",player);
 		gameMap.addActor(n,  2, 4);
+		
+		Q q = new Q("q",(NewPlayer)player);
+		gameMap.addActor(q,3,1);
+		
 			
 		world.run();
 		

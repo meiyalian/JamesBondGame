@@ -2,11 +2,15 @@ package game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.SkipTurnAction;
 
 
@@ -21,8 +25,7 @@ public class NewPlayer extends NewActor{
 	
 	
 	private int stunTurnCounter = 0; // counters that record how many turns has the player been stunned
-	
-	
+
 	
 
 	/**
@@ -57,8 +60,9 @@ public class NewPlayer extends NewActor{
 		
 		if (! isStunned){
 		return showMenu(actions, display);
-		}
 		
+		}
+
 		else {
 			stunTurnCounter ++;
 			display.println(this.name + " has been stunned, cannot do anything in this turn.");
@@ -81,6 +85,11 @@ public class NewPlayer extends NewActor{
 	 * @return the Action selected by the user
 	 */
 	protected Action showMenu(Actions actions, Display display) {
+		
+
+		
+		
+		
 		ArrayList<Character> freeChars = new ArrayList<Character>();
 		HashMap<Character, Action> keyToActionMap = new HashMap<Character, Action>();
 
@@ -119,6 +128,7 @@ public class NewPlayer extends NewActor{
 		return keyToActionMap.get(key);
 	}
 
+	
 
 
 }

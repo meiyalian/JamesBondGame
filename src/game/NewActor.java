@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.Item;
 
 /**
  * Abstract Class extends from the Actor class in the engine code. 
@@ -26,7 +27,13 @@ public abstract class NewActor extends Actor{
 	public void beStunned() {
 		isStunned = true;
 	}
-	
-	
-	
+//	
+//	public boolean hasItem(String name) {
+//		for (Item i : inventory) {
+//			if (i.toString().equals(name)) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 }
