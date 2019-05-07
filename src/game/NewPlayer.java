@@ -98,6 +98,7 @@ public class NewPlayer extends NewActor{
 				display.println(hotKey + ": " + action.menuDescription(this));
 			}
 		}
+		
 
 		for (Action action : actions) {
 			if (action.hotKey() == "") {

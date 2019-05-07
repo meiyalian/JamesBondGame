@@ -34,7 +34,7 @@ public class Throw extends Action{
 		}
 		
 		else {
-			return actor + " misses " + subject + ".";
+			return actor + " misses throwing " + item.toString() + " to " + subject + ".";
 		}
 		
 		
