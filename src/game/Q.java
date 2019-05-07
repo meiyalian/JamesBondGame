@@ -12,6 +12,10 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.SkipTurnAction;
 
+
+/**
+ * Class Q
+ */
 public class Q extends NewActor{
 	
 	private  NewPlayer protagonist;
@@ -23,7 +27,7 @@ public class Q extends NewActor{
 		super(name,'Q', 5, 10);
 		protagonist = player;
 		addBehaviour(new WanderingBehaviour());
-		// to ZAC:add rocket body in q's inventory when you implement the rocket body class:
+		//to ZAC:add rocket body in q's inventory when you implement the rocket body class:
 		
 		
 		
