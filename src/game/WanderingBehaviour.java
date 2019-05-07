@@ -12,7 +12,7 @@ import edu.monash.fit2099.engine.MoveActorAction;
 
 public class WanderingBehaviour implements ActionFactory {
 	
-	
+	// for generate random step
 	private Random rand = new Random();
 	
 
