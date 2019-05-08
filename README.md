@@ -5,46 +5,23 @@
 ##### The layouts of maps in this game will be hardcoded as auto generated maps might not be guaranteed to always have required features such as a locked room, which needs to be implemented via a combination of `Locations`.
 
 ## **Interfaces**
-### Disposition
-***
-##### Design
-- Create an interface called `Disposition` to be used as a label to identify the disposition (attitude) towards the player.
-- Requires classes that implements this interface to have a Attitude type varaible that represents the disposition.
-- Able to obtain the `Attitude` of an entity towards the player.
-- Able to change the `Attitude` of an entity towards the player.
-##### Pros
-- Flexible, can be even applied to non-actor entities.
-- No dependency required, so the feature can be added/removed to a class easily.
-##### Cons
-- Not rigorous, non-conscious entities such as `Item` can also implement the interface and have attitudes towards the player.
 
 ### Throwable
 ***
 ##### Design
+
 - Creates an interface `Throwable` to identify if an item or weapon can be thrown.
-- The values to determine if throwable for each item/weapon are final.
+- Contains two abstract methods:
+- isHit( ): a method to control the possibility of hitting a target. 
+- affect( ) : the effect caused by the throwable object when it hits a character. 
 ##### Pros
 - Flexibility and no dependencies, as any class can add/remove this feature.
-- Whether the item/weapon is throwable cannot be changed once it is set, hence to prevent logical errors.
 ##### Cons
 - Redundant implementations on subclasses of `Item`, `Weapon`, etc. As classes in the engine cannot be modified.
 - Not rigorous, `Actor` entites can also implement this feature to determine if they are throwable or not.
 
 
 ## **Enums**
-### Attitude
-***
-##### Design
-- Create an enum named `Attitude` that contains all possible `Attitudes` of an entity.
-- Used with the `Disposition` interface in order to implement the functionality that entities can have opinions towards the `Player`.
-##### List of all attitudes
-- `Friendly`: The entity is friendly towards the `Player`.
-- `Neutral`: The entity has no biased opinion towards the `Player`.
-- `Hostile`: The entity is hostile towards the `Player`.
-##### Pros
-- Strong typed to prevent errors. Other code can only choose from the available `Attitudes` in this enum.
-- Simplicity and unification. For all classes that implements `Disposition`, this is the only enum that they can obtain `Attitudes` from, so there won't be other similar code to confuse the programmer, and it's easy to debug.
-
 ### SkillList
 ***
 ##### Design
@@ -190,6 +167,22 @@
 
 
 ## **Actors**
+
+### NewActor
+***
+##### Design
+- An abstract class extends from the `Actor` class in the engine code. 
+- It is used by all the `Actors` in the game. 
+- Compare to the `Actor` class, it has a Boolean attribute `isStunned` which records if the `Actor` is stunned or not in order to implement the affect caused by throwing a `StunPowder` to an `Actor` (the `Actor` will skip 2 turns). 
+
+### NewPlayer
+***
+##### Design
+- Class extends from `NewActor`, uses to replace the `Player` class in the engine .
+- Compare to the `Player` class, this class, in each turn, it will check if the `Player` is stunned or not. If the `Player` is stunned, the playturn function will return `SkipTurnAction` for 2 turns. 
+##### Cons
+- Since the class is extended from the `NewActor` class, it cannot extends from the `Player` class in the engine due to the conflict of two subclasses. Hence, in the playturn function, a part of code in the engine `Player` class is copy-pasted to this class. 
+
 ### Grunt
 ***
 ##### Design
