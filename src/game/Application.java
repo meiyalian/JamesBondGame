@@ -48,7 +48,7 @@ public class Application {
 		gameMap.addActor(n,  2, 4);
 		
 		Q q = new Q("q",(NewPlayer)player);
-		gameMap.addActor(q,3,1);
+		gameMap.addActor(q,3,0);
 		
 			
 		world.run();

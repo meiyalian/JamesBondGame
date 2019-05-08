@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
@@ -23,7 +24,7 @@ public class WanderingBehaviour implements ActionFactory {
 		
 		Location here = map.locationOf(actor);
 		
-		ArrayList<Exit> exits = (ArrayList<Exit>) here.getExits();
+		List<Exit> exits = here.getExits();
 		for (Exit exit : exits) {
 			Location destination = exit.getDestination();
 			if (destination.canActorEnter(actor)) {
@@ -39,7 +40,5 @@ public class WanderingBehaviour implements ActionFactory {
 			
 		return null;
 	}
-	
-	
 
 }
