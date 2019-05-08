@@ -10,13 +10,21 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
-
+/**
+ *  class for wandering behaviour
+ */
 public class WanderingBehaviour implements ActionFactory {
 	
 	// for generate random step
 	private Random rand = new Random();
-	
 
+	/**
+	 *  
+	 *  @param actor that perform this behaviour 
+	 *
+	 *  @return: MoveActorAction random move step
+	 *  
+	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 
@@ -37,7 +45,6 @@ public class WanderingBehaviour implements ActionFactory {
 			Location randomStep = locations.get(randomIndex);
 			return new MoveActorAction(randomStep,exits.get(randomIndex).getName());
 		}
-			
 		return null;
 	}
 

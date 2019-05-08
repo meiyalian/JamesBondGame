@@ -41,7 +41,7 @@ public class ActorLocations implements Iterable<Actor> {
 	/**
 	 * Remove an Actor from the system.
 	 *
-	 * @param actor
+	 * @param actor 
 	 */
 	public void remove(Actor actor) {
 		Location location = actorToLocation.get(actor);

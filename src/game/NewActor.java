@@ -22,7 +22,7 @@ public abstract class NewActor extends Actor{
 	/**
 	 * method for setting the actor to a stunned state.
 	 * override this method to invoke different actions when an actor is being stunned. 
-	 * @return None
+	 * 
 	 */
 	public void beStunned() {
 		isStunned = true;

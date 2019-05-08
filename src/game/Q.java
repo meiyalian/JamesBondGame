@@ -14,7 +14,7 @@ import edu.monash.fit2099.engine.SkipTurnAction;
 
 
 /**
- * Class Q
+ * Class for character Q
  */
 public class Q extends NewActor{
 	
@@ -38,6 +38,7 @@ public class Q extends NewActor{
 	}
 
 	
+	
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		this.display = display;
@@ -56,7 +57,10 @@ public class Q extends NewActor{
 		
 	
 
-	
+
+/**
+ * calculate the distance between 2 actors 
+ */
 	private int distance(Location a, Location b) {
 		return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
 	}

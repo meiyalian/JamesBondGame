@@ -9,6 +9,10 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 
+
+/**
+ * Class for character Goon
+ */
 public class Goon extends NewActor {
 	
 	private Display display;
@@ -31,6 +35,13 @@ public class Goon extends NewActor {
 		
 	}
 	
+	
+	
+	/**
+	 * there is 10% chance on each turn of the Goon shouting an insult at the player. 
+	 * 
+	 *
+	 */
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		

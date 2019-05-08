@@ -20,7 +20,11 @@ public class Ninja extends NewActor{
 		
 	}
 	
-	
+
+/**
+ *  If the distance between Ninja and player is less or equal to 5, ninja will throw a bag 
+ *  of stun powder to the player and step away from player 
+ */
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		

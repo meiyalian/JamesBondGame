@@ -20,10 +20,9 @@ public class StunPowder extends WeaponItem implements Throwable{
 	/**
 	 * The constructor
 	 *
-	 * @param the target to hit
+	 * @param  subjectActor the target to hit
 	 * 
 	 */
-
 	public StunPowder(NewActor subjectActor) {
 		super("Stun Powder",'s', 0, "stunned");
 		subject =subjectActor;
@@ -35,8 +34,6 @@ public class StunPowder extends WeaponItem implements Throwable{
 	/**
 	 * used by the throw action, has 50% chance to hit the target and stun the target
 	 *
-	 * @param the target to hit
-	 * 
 	 */
 	@Override
 	public boolean isHit() {

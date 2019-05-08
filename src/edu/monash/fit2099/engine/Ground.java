@@ -52,8 +52,8 @@ public class Ground implements Skilled, Printable {
 	/**
 	 * Override this to implement impassable terrain, or terrain that is only passable if conditions are met.
 	 *
-	 * @param actor
-	 * @return true
+	 * @param: actor
+	 * @return: true
 	 */
 	public boolean canActorEnter(Actor actor) {
 		return true;
