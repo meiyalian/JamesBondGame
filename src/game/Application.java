@@ -20,10 +20,12 @@ public class Application {
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new Door(), new RocketPad());
 		GameMap gameMap;
 
+		
+		// "R" on the left (1,3) is for testing, replace it with "." after testing.
 		List<String> map = Arrays.asList(
 				".........................",
 				"....#####......######....",
-				"....#...#......#....#....",
+				"....#...#......#R...#....",
 				".R..#...+......#....#....",
 				"....#####......##+###....",
 				".........................",
@@ -38,6 +40,8 @@ public class Application {
 		
 		NewActor player = new NewPlayer("Player", '@', 1, 100);
 		
+		
+		// ¡ý Testing code, remove after testing ¡ý
 		RocketBody body = new RocketBody();
 		body.getAllowableActions().clear();
 		body.getAllowableActions().add(new DropItemAction(body));
@@ -47,6 +51,8 @@ public class Application {
 		engine.getAllowableActions().clear();
 		engine.getAllowableActions().add(new DropItemAction(engine));
 		player.addItemToInventory(engine);
+		// ¡ü Testing code, remove after testing ¡ü
+		
 		
 		world.addPlayer(player, gameMap, 2, 2);
 		
