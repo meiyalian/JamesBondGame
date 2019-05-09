@@ -6,7 +6,9 @@ import java.util.List;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.AttackAction;
 import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
@@ -18,7 +20,7 @@ import edu.monash.fit2099.engine.SkipTurnAction;
  */
 public class Q extends NewActor{
 	
-	private  NewPlayer protagonist;
+	private NewPlayer protagonist;
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
 	private Display display;
 	
@@ -28,8 +30,29 @@ public class Q extends NewActor{
 		protagonist = player;
 		addBehaviour(new WanderingBehaviour());
 		
+		RocketBody item = new RocketBody();
+		item.getAllowableActions().clear();
+		item.getAllowableActions().add(new DropItemAction(item));
+		this.addItemToInventory(item);
+		//to ZAC:add rocket body in q's inventory when you implement the rocket body class:
 		
+	}
+	
+	@Override
+	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		
+		Actions actions = new Actions();
+		
+		String dialogue = "I can give you something that will help, but I¡¯m going to need the plans.";
+		for (Item item : otherActor.getInventory())
+			if (item.getDisplayChar() == 'p') {
+				actions.add(new GiveAction(otherActor, this, item));
+				dialogue = "Hand them over, I don¡¯t have all day!";
+				break;
+			}
+		actions.add(new TalkAction(otherActor, this, dialogue));
+		
+		return actions;
 	}
 	
 	private void addBehaviour(ActionFactory behaviour) {
@@ -42,18 +65,26 @@ public class Q extends NewActor{
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		this.display = display;
 		
-	
+		Item rocketBody = null;
+		boolean give = false;
+		for (Item item : this.getInventory()) {
+			if (item.getDisplayChar() == 'b')
+				rocketBody = item;
+			if (item.getDisplayChar() == 'p')
+				give = true;
+		}
+			
+		if (give)
+			return new GiveAndDisappearAction(this, this.protagonist, rocketBody, "has disappeared with a cheery wave.");
+				
 		
 		for (ActionFactory factory : actionFactories) {
 			Action action = factory.getAction(this, map);
-			if(action != null ) {
+			if(action != null)
 				return action;
 		}
-	}
 		return super.playTurn(actions,  map,  display);
-		
 	}
-	
 
 
 /**
