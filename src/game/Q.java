@@ -27,7 +27,6 @@ public class Q extends NewActor{
 		super(name,'Q', 5, 10);
 		protagonist = player;
 		addBehaviour(new WanderingBehaviour());
-		//to ZAC:add rocket body in q's inventory when you implement the rocket body class:
 		
 		
 		
@@ -47,14 +46,13 @@ public class Q extends NewActor{
 		
 		for (ActionFactory factory : actionFactories) {
 			Action action = factory.getAction(this, map);
-			if(action != null)
+			if(action != null ) {
 				return action;
 		}
-		
-		return super.playTurn(actions,  map,  display);
 	}
+		return super.playTurn(actions,  map,  display);
 		
-		
+	}
 	
 
 
