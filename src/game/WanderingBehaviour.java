@@ -10,9 +10,14 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
+
+
 /**
- *  class for wandering behaviour
- */
+ * 
+ * The class that implements wandering behavior, which makes an actor moves around the map randomly.
+ * Note: For each turn the actor only has 50% of chance to move around
+ *
+**/
 public class WanderingBehaviour implements ActionFactory {
 	
 	// for generate random step
@@ -31,21 +36,27 @@ public class WanderingBehaviour implements ActionFactory {
 		ArrayList<Location> locations = new ArrayList<Location>();
 		
 		Location here = map.locationOf(actor);
+		Location destination;
 		
 		List<Exit> exits = here.getExits();
 		for (Exit exit : exits) {
-			Location destination = exit.getDestination();
-			if (destination.canActorEnter(actor)) {
+			destination = exit.getDestination();
+			if (destination.canActorEnter(actor))
 				locations.add(destination);
-			}
-			
 		}
+		
+		
+		MoveActorAction moves = null;
+		
 		if (locations.size()>0) {
-			int randomIndex = rand.nextInt( locations.size());
+			int randomIndex = rand.nextInt(locations.size());
 			Location randomStep = locations.get(randomIndex);
-			return new MoveActorAction(randomStep,exits.get(randomIndex).getName());
+
+			if (rand.nextDouble() < 0.5)
+				moves = new MoveActorAction(randomStep, exits.get(randomIndex).getName());
 		}
-		return null;
+		
+		return moves;
 	}
 
 }

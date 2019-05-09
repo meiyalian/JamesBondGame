@@ -7,8 +7,9 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.GameMap;
-
+import edu.monash.fit2099.engine.Item;
 
 /**
  * Class for character Goon
@@ -17,24 +18,24 @@ public class Goon extends NewActor {
 	
 	private Display display;
 	private Actor target;
-
+	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
+	
 	// Goon have 100 hit points and are always represented with an 'o'
 	public Goon(String name, Actor player) {
-		super(name, 'o', 5, 100);
+		super(name, 'o', 12, 50);
 		addBehaviour(new FollowBehaviour(player));
 		target = player;
-	
+		
+		Key item = new Key();
+		item.getAllowableActions().clear();
+		item.getAllowableActions().add(new DropItemAction(item));
+		this.addItemToInventory(item);
 	}
-	
-	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
-
 	
 	
 	private void addBehaviour(ActionFactory behaviour) {
 		actionFactories.add(behaviour);
-		
 	}
-	
 	
 	
 	/**
@@ -53,14 +54,12 @@ public class Goon extends NewActor {
 			display.println(result);
 		}
 		
+		Action action;
 		for (ActionFactory factory : actionFactories) {
-			Action action = factory.getAction(this, map);
+			action = factory.getAction(this, map);
 			if(action != null)
 				return action;
 		}
-		
 		return super.playTurn(actions,  map,  display);
 	}
-	
-	
 }
