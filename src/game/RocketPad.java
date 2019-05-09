@@ -24,10 +24,10 @@ public class RocketPad extends Ground{
 		Actions actions = new Actions();
 		
 		for (Item item : actor.getInventory()) {
-			if (item instanceof RocketBody)
+			if (item instanceof RocketBody && this.hasBody == false)
 				actions.add(new GiveAction(actor, this.actorInterface, item));
 		
-			if (item instanceof RocketEngine)
+			if (item instanceof RocketEngine && this.hasEngine == false)
 				actions.add(new GiveAction(actor, this.actorInterface, item));
 		}
 		
