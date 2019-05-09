@@ -36,7 +36,7 @@ public class RocketPad extends Ground{
 		
 		Actions actions = new Actions();
 		
-		if (this.hasBody == false && this.hasEngine == false) {
+		if (!(this.hasBody && this.hasEngine)) {
 			for (Item item : actor.getInventory()) {
 				if (item instanceof RocketBody && this.hasBody == false)
 					actions.add(new GiveAction(actor, this.actorInterface, item));
