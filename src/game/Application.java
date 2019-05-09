@@ -50,18 +50,18 @@ public class Application {
 		
 		world.addPlayer(player, gameMap, 2, 2);
 		
-//		Grunt grunt = new Grunt("Mongo", player);
-//		gameMap.addActor(grunt, 0, 0);
-//		
-//		Grunt grunt2 = new Grunt("Norbert", player);
-//		gameMap.addActor(grunt2, 10, 10);
-//		
-//		Goon goon = new Goon("Goon", player);
-//		gameMap.addActor(goon, 8, 10);
-//		
-//		Ninja n = new Ninja("Ninja", player);
-//		gameMap.addActor(n, 2, 4);
-//		
+		Grunt grunt = new Grunt("Mongo", player);
+		gameMap.addActor(grunt, 0, 0);
+		
+		Grunt grunt2 = new Grunt("Norbert", player);
+		gameMap.addActor(grunt2, 10, 10);
+		
+		Goon goon = new Goon("Goon", player);
+		gameMap.addActor(goon, 8, 10);
+		
+		Ninja n = new Ninja("Ninja", player);
+		gameMap.addActor(n, 2, 4);
+		
 		Q q = new Q("Q", (NewPlayer)player);
 		gameMap.addActor(q, 10, 8);
 		

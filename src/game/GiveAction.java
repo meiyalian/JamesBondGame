@@ -30,7 +30,7 @@ public class GiveAction extends Action{
 
 	@Override
 	public String menuDescription(Actor actor) {
-		return actor.toString() + " give item to " + target.toString();
+		return actor.toString() + " give " + item.toString() +" to " + target.toString();
 	}
 
 	@Override
