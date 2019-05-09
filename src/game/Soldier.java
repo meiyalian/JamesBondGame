@@ -10,17 +10,16 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.SkipTurnAction;
 
 
-
 /**
- *  Soldier class -- soldier will always stay in the same position and trying to defend something 
+ *  Soldier class -- soldier will always stay in the same position and trying to defend something or someone
  */
 
 public class Soldier extends NewActor {
 	
-	private NewActor target;
+	private NewActor target; 
 
 	public Soldier(String name,NewPlayer player) {
-		super(name, '!', 2, 30);
+		super(name, '!', 2, 20);
 		target = player;
 	}
 	
@@ -32,7 +31,6 @@ public class Soldier extends NewActor {
 		if (Math.abs(here.x() - there.x()) + Math.abs(here.y() - there.y()) <=1){
 			return new AttackAction(this, target);
 		}
-		
 		else {
 			return new SkipTurnAction();
 		}
