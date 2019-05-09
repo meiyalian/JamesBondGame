@@ -33,6 +33,8 @@ public class Application {
 		gameMap = new GameMap(groundFactory, map);
 		world.addMap(gameMap);
 		
+
+		
 		NewActor player = new NewPlayer("Player", '@', 1, 100);
 		world.addPlayer(player, gameMap, 2, 2);
 		
@@ -49,6 +51,10 @@ public class Application {
 		
 		Q q = new Q("q",(NewPlayer)player);
 		gameMap.addActor(q,3,0);
+		
+		
+		Medicine m = new Medicine(10);
+		gameMap.addItem(m,2,1);
 		
 			
 		world.run();
