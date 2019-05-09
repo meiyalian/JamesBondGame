@@ -8,6 +8,8 @@ import edu.monash.fit2099.engine.Location;
 
 public class RocketPad extends Ground{
 	
+	private RocketPadActor actorInterface = new RocketPadActor(this);
+	private NewActor player;
 	private boolean hasBody;
 	private boolean hasEngine;
 	
@@ -23,9 +25,9 @@ public class RocketPad extends Ground{
 		
 		for (Item item : actor.getInventory())
 			if (item instanceof RocketBody)
-				actions.add(new AddBodyAction());
+				actions.add(new GiveAction(actor, this.actorInterface, item));
 			else if (item instanceof RocketEngine)
-				actions.add(new AddEngineAction());
+				actions.add(new GiveAction(actor, this.actorInterface, item));
 		
 		return actions;
 	}
