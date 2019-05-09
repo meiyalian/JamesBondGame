@@ -21,7 +21,7 @@ public class GiveAction extends Action{
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		target.addItemToInventory(Item.newInventoryItem(item.toString(), item.getDisplayChar()));
+		target.addItemToInventory(item);
 		actor.removeItemFromInventory(item);
 		
 		String result = actor.toString() + " has given " + item.toString() + " to " + target.toString() + ".";

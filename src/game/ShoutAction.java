@@ -35,7 +35,7 @@ public class ShoutAction extends Action{
 	public String execute(edu.monash.fit2099.engine.Actor actor, GameMap map) {
 	
 		String word = wordsToShout.get(rand.nextInt( wordsToShout.size()) );
-		return actor.toString() + " shouts to " + this.receiver.toString() + ": " + word+ "!";
+		return this.menuDescription(actor) + ": " + word+ "!";
 	
 	}
 	@Override

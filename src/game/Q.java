@@ -45,7 +45,7 @@ public class Q extends NewActor{
 		
 		String dialogue = "I can give you something that will help, but I¡¯m going to need the plans.";
 		for (Item item : otherActor.getInventory())
-			if (item.getDisplayChar() == 'p') {
+			if (item instanceof Key) {
 				actions.add(new GiveAction(otherActor, this, item));
 				dialogue = "Hand them over, I don¡¯t have all day!";
 				break;
@@ -68,9 +68,9 @@ public class Q extends NewActor{
 		Item rocketBody = null;
 		boolean give = false;
 		for (Item item : this.getInventory()) {
-			if (item.getDisplayChar() == 'b')
+			if (item instanceof RocketBody)
 				rocketBody = item;
-			if (item.getDisplayChar() == 'p')
+			if (item instanceof RocketPlan)
 				give = true;
 		}
 			

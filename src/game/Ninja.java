@@ -3,6 +3,7 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
@@ -18,6 +19,10 @@ public class Ninja extends NewActor{
 		super(name, 'n', 20,20);
 		target = player;
 		
+		Key item = new Key();
+		item.getAllowableActions().clear();
+		item.getAllowableActions().add(new DropItemAction(item));
+		this.addItemToInventory(item);
 	}
 	
 

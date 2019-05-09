@@ -19,6 +19,10 @@ public class RocketPadActor extends NewActor{
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		
 		for (Item item : this.getInventory()) {
+			
+			display.println(Character.toString(item.getDisplayChar()));
+			display.println("dsauhfso");
+			
 			if (item instanceof RocketBody) {
 				parent.addBody();
 				this.removeItemFromInventory(item);
