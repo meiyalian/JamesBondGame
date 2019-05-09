@@ -67,7 +67,7 @@ public class NewPlayer extends NewActor{
 			stunTurnCounter ++;
 			display.println(this.name + " has been stunned, cannot do anything in this turn.");
 
-			if (stunTurnCounter ==2) {
+			if (stunTurnCounter >=2) {
 				stunTurnCounter = 0;
 				isStunned = false;
 			}

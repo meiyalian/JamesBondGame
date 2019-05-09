@@ -42,13 +42,11 @@ public abstract class NewActor extends Actor{
 		}
 		return super.playTurn(actions,  map,  display);
 	}
-//	
-//	public boolean hasItem(String name) {
-//		for (Item i : inventory) {
-//			if (i.toString().equals(name)) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
+
+	/**
+	 * check if the actor has been stunned
+	 */
+	public boolean checkStun() {
+		return isStunned;
+	}
 }

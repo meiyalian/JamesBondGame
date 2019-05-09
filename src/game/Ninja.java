@@ -40,7 +40,9 @@ public class Ninja extends NewActor{
 		
 		else {
 			
+			
 			StunPowder sp = new StunPowder(target);
+			
 			Throw t = new Throw(this, target,sp);
 			
 			String result = t.execute(this, map);

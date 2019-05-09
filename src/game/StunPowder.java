@@ -53,9 +53,9 @@ public class StunPowder extends WeaponItem implements Throwable{
 
 	@Override
 	public void affect() {
-		subject.beStunned();
-		
-		
+		if (!subject.checkStun()) {
+			subject.beStunned();
+		}
 		
 	}
 	
