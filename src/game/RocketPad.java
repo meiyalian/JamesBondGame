@@ -23,18 +23,20 @@ public class RocketPad extends Ground{
 	public Actions allowableActions(Actor actor, Location location, String direction) {
 		Actions actions = new Actions();
 		
-		for (Item item : actor.getInventory())
+		for (Item item : actor.getInventory()) {
 			if (item instanceof RocketBody)
 				actions.add(new GiveAction(actor, this.actorInterface, item));
-			else if (item instanceof RocketEngine)
+		
+			if (item instanceof RocketEngine)
 				actions.add(new GiveAction(actor, this.actorInterface, item));
+		}
 		
 		return actions;
 	}
 	
 	@Override
 	public boolean canActorEnter(Actor actor) {
-		return !(hasBody || hasEngine);
+		return (hasBody && hasEngine);
 	}
 	
 	@Override
@@ -42,6 +44,12 @@ public class RocketPad extends Ground{
 		return !(hasBody || hasEngine);
 	}
 	
+	public void addEngine() {
+		this.hasEngine = true;
+	}
 	
+	public void addBody() {
+		this.hasBody = true;
+	}
 
 }
