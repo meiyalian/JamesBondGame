@@ -17,6 +17,7 @@ import edu.monash.fit2099.engine.SkipTurnAction;
 
 /**
  * Class for character Q
+ * Q will wander around the map, can talk to the player, can give/receive item from/to player, and disappears.
  */
 public class Q extends NewActor{
 	
@@ -24,7 +25,7 @@ public class Q extends NewActor{
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
 	private Display display;
 	
-
+	
 	public Q(String name, NewPlayer player) {
 		super(name,'Q', 5, 10);
 		protagonist = player;

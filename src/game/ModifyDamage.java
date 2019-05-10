@@ -3,12 +3,20 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-
+/**
+ * 
+ * Action that modifies an actor's damage. 
+ *
+ */
 public class ModifyDamage extends Action{
 
 	private int damage;
 	private String status;
 	
+	/**
+	 * Constructor for ModifyDamageActions
+	 * @param damage: How much damage does it change for the actor. (If the calculated damage is less than 0, then actor's damage will be set to 0 instead of negative damage)
+	 */
 	public ModifyDamage(int damage) {
 		this.damage = damage;
 		

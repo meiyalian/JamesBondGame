@@ -92,7 +92,7 @@ public class RocketPad extends Ground{
 	 * Sets the current state of the rocket pad to containing an engine after the player has added it to the pad.
 	 * 
 	 */
-	private void addEngine() {
+	public void addEngine() {
 		this.hasEngine = true;
 	}
 	
@@ -100,7 +100,7 @@ public class RocketPad extends Ground{
 	 * Sets the current state of the rocket pad to containing a body after teh player has added it to the pad.
 	 * 
 	 */
-	private void addBody() {
+	public void addBody() {
 		this.hasBody = true;
 	}
 

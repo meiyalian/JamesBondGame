@@ -2,7 +2,11 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-
+/**
+ * 
+ * The behavior for an actor to keep following another actor.
+ *
+ */
 public class FollowBehaviour implements ActionFactory {
 
 	private Actor target;
@@ -12,6 +16,10 @@ public class FollowBehaviour implements ActionFactory {
 	}
 
 	@Override
+	/**
+	 * Method for making the decision of moving to the location that will be closest to the target, 
+	 * hence achieving following behavior.
+	 */
 	public Action getAction(Actor actor, GameMap map) {
 		Location here = map.locationOf(actor);
 		Location there = map.locationOf(target);

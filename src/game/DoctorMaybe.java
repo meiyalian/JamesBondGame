@@ -44,6 +44,13 @@ public class DoctorMaybe extends NewActor {
 	}
 	
 	@Override
+	/**
+	 * Overrides the Actions from super class, so to make Doctor Maybe not move around the map.
+	 * @param actions: Allowable actions in this turn for the current Actor.
+	 * @param map: Current map the Actor is in.
+	 * @param display: Used to print messages for the user to see.
+	 * @return the chosen action to perform in this turn.
+	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 
 		if (this.distance(map.locationOf(this.player), map.locationOf(this)) <=1)

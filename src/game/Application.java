@@ -12,9 +12,13 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.Player;
 import edu.monash.fit2099.engine.World;
-
+/**
+ * 
+ * The main driver class for the entire project, entry point of the game.
+ *
+ */
 public class Application {
-//testing
+
 	public static void main(String[] args) {
 		World world = new World(new Display());
 

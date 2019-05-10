@@ -7,10 +7,18 @@ import java.util.List;
 
 
 
-
+/**
+ * 
+ * The class for Grunts, Grunts follows and attacks the player.
+ *
+ */
 public class Grunt extends NewActor {
 
-	// Grunts have 50 hitpoints and are always represented with a g
+	/**
+	 * Constructor for Grunts.
+	 * @param name: The name for the individual Grunts.
+	 * @param player: The current player.
+	 */
 	public Grunt(String name, Actor player) {
 		super(name, 'g', 5, 30);
 		addBehaviour(new FollowBehaviour(player));

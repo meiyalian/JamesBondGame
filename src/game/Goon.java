@@ -12,7 +12,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
 /**
- * Class for character Goon
+ * Class for character Goons. Goons also follows player and does twice damage as Grunts.
  */
 public class Goon extends NewActor {
 	
@@ -20,7 +20,12 @@ public class Goon extends NewActor {
 	private Actor target;
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
 	
-	// Goon have 100 hit points and are always represented with an 'o'
+
+	/**
+	 * Constructor for Goons.
+	 * @param name: The name for the individual goon.
+	 * @param player: The current player.
+	 */
 	public Goon(String name, Actor player) {
 		super(name, 'o', 12, 30);
 		this.damage = 10;
@@ -42,9 +47,7 @@ public class Goon extends NewActor {
 	
 	
 	/**
-	 * there is 10% chance on each turn of the Goon shouting an insult at the player. 
-	 * 
-	 *
+	 * There is 10% chance on each turn of the Goon shouting an insult at the player. 
 	 */
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {

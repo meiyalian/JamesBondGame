@@ -40,6 +40,9 @@ public abstract class NewActor extends Actor{
 	}
 	
 	@Override
+	/**
+	 * Avoid actors picking up or dropping items. (No affects on player since it's user's choice)
+	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		
 		for (Action action : actions) {

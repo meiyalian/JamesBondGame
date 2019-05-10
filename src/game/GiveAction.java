@@ -5,17 +5,23 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 /**
- * class for the give action
+ * Class for an actor to give an item to another actor.
+ * When using Give, the class assumes the actor already have the item,
+ * So the item should be checked for its existence before calling Give.
  */
 
 public class GiveAction extends Action{
 
-	// When using Give, the class assumes the actor already have the item,
-	// So the item should be checked for its existence before calling Give.
 	
 	Actor actor, target;
 	Item item;
 	
+	/**
+	 * Constructor for Give Action
+	 * @param actor: The actor that gives item.
+	 * @param target: The actor that receives item.
+	 * @param item: The item to be given/received.
+	 */
 	public GiveAction(Actor actor, Actor target, Item item) {
 		this.actor = actor;
 		this.target = target;
@@ -23,6 +29,9 @@ public class GiveAction extends Action{
 	}
 
 	@Override
+	/**
+	 * Give the item to the target, while also removes it from the giver's inventory.
+	 */
 	public String execute(Actor actor, GameMap map) {
 		target.addItemToInventory(item);
 		actor.removeItemFromInventory(item);

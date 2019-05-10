@@ -5,8 +5,8 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 /**
- * class for the give and dissapear action. This action will let the actor 
- * give to another actor something and then dissapears
+ * Class for the give and disappear action. This action will let the actor.
+ * Give to another actor something and then disappears (removed from map).
  */
 
 public class GiveAndDisappearAction extends Action{
@@ -16,6 +16,13 @@ public class GiveAndDisappearAction extends Action{
 	Item item;
 	String description;
 	
+	/**
+	 * Constructor for GiveAndDisappearAction.
+	 * @param actor: Actor that gives item, then will be disappeared.
+	 * @param target: The receiver of the item.
+	 * @param item: The item to be given/received.
+	 * @param description: The message to be printed after the actor disappears.
+	 */
 	public GiveAndDisappearAction(Actor actor, Actor target, Item item, String description) {
 		this.actor = actor;
 		this.target = target;
@@ -24,6 +31,9 @@ public class GiveAndDisappearAction extends Action{
 	}
 
 	@Override
+	/**
+	 * Execution of the GiveAndDisappearAction.
+	 */
 	public String execute(Actor actor, GameMap map) {
 		
 		GiveAction give = new GiveAction(this.actor, this.target, this.item);
