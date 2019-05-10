@@ -15,7 +15,7 @@ import edu.monash.fit2099.engine.MoveActorAction;
 /**
  * 
  * The class that implements wandering behavior, which makes an actor moves around the map randomly.
- * Note: For each turn the actor only has 50% of chance to move around to help the player easily get in touch with 
+ * Note: For each turn the actor only has 50% of chance to move around to help the player easily get in touch with.
  * Q
  *
 **/
