@@ -59,7 +59,7 @@ public class Application {
 		NewActor player = new NewPlayer("Player", '@', 1, 100);
 		
 		
-		// ¡ý Testing code, remove after testing ¡ý
+		//  Testing code, remove after testing 
 		RocketBody body = new RocketBody();
 		body.getAllowableActions().clear();
 		body.getAllowableActions().add(new DropItemAction(body));
@@ -74,7 +74,7 @@ public class Application {
 		key.getAllowableActions().clear();
 		key.getAllowableActions().add(new DropItemAction(key));
 		player.addItemToInventory(key);
-		// ¡ü Testing code, remove after testing ¡ü
+		//  Testing code, remove after testing 
 		
 		
 		world.addPlayer(player, gameMap, 2, 2);
