@@ -22,9 +22,12 @@ public class Goon extends NewActor {
 	
 	// Goon have 100 hit points and are always represented with an 'o'
 	public Goon(String name, Actor player) {
-		super(name, 'o', 12, 50);
+		super(name, 'o', 12, 30);
+		this.damage = 10;
+		
 		addBehaviour(new FollowBehaviour(player));
-		target = player;
+		this.target = player;
+		
 		
 		Key item = new Key();
 		item.getAllowableActions().clear();

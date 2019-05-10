@@ -2,15 +2,13 @@ package game;
 
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.MoveActorAction;
 
 public class RocketPad extends Ground{
-	/**
-	 * class the rocket pad. Place rocket body and engine in here to build a rocket
-	 */
-
 	
 	private Actor actorInterface = new Actor("RocketPadActor", 'R', 1, 1000);
 	private NewActor player;
@@ -25,7 +23,8 @@ public class RocketPad extends Ground{
 	
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {
-		
+		Actions actions = new Actions();
+			
 		for (Item item : this.actorInterface.getInventory()) {
 			if (item instanceof RocketBody) {
 				this.addBody();
@@ -37,8 +36,6 @@ public class RocketPad extends Ground{
 				this.actorInterface.removeItemFromInventory(item);
 			}
 		}
-		
-		Actions actions = new Actions();
 		
 		if (this.hasBody == false || this.hasEngine == false) {
 			for (Item item : actor.getInventory()) {
@@ -52,21 +49,15 @@ public class RocketPad extends Ground{
 		return actions;
 	}
 	
-	/**
-	 * if the actor has the rocket body and the engine, return true to allow the actor enters in here 
-	 */
-
 	@Override
 	public boolean canActorEnter(Actor actor) {
 		return (hasBody && hasEngine);
 	}
 	
-	
 	@Override
 	public boolean blocksThrownObjects() {
 		return !(hasBody || hasEngine);
 	}
-	
 	
 	public void addEngine() {
 		this.hasEngine = true;

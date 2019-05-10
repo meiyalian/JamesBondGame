@@ -33,7 +33,10 @@ public class UnlockAction extends Action {
 
 	@Override
 	public String menuDescription(Actor actor) {
-		return actor.toString() + " unlocks the door.";
+		String status = "unlocks";
+		if (!this.door.blocksThrownObjects())
+			status = "locks";
+		return actor.toString() + " " + status +" the door.";
 	}
 
 	@Override

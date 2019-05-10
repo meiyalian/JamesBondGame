@@ -18,9 +18,9 @@ public class Soldier extends NewActor {
 	
 	private NewActor target; 
 
-	public Soldier(String name,NewPlayer player) {
+	public Soldier(String name, NewActor player) {
 		super(name, '!', 2, 20);
-		target = player;
+		this.target = player;
 	}
 	
 	@Override

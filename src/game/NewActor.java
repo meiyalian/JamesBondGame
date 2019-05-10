@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.PickUpItemAction;
 
@@ -15,7 +16,7 @@ import edu.monash.fit2099.engine.PickUpItemAction;
  */
 public abstract class NewActor extends Actor{
 	
-	
+	protected int damage = 5;
 	protected boolean isStunned = false; // the state of an actor (stunned / not stunned) 
 
 	
@@ -34,6 +35,11 @@ public abstract class NewActor extends Actor{
 	}
 	
 	@Override
+	public IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(damage, "punches");
+	}
+	
+	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		
 		for (Action action : actions) {
@@ -48,5 +54,13 @@ public abstract class NewActor extends Actor{
 	 */
 	public boolean checkStun() {
 		return isStunned;
+	}
+	
+	public int getDamage() {
+		return this.damage;
+	}
+	
+	public void setDamage(int damage) {
+		this.damage = (damage >= 0) ? damage:0;
 	}
 }

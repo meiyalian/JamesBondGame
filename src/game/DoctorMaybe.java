@@ -35,6 +35,7 @@ public class DoctorMaybe extends NewActor {
 		
 		super(name, 'd', 3, 15);
 		this.player = player;
+		this.damage = 3;
 			
 		RocketEngine item = new RocketEngine();
 		item.getAllowableActions().clear();

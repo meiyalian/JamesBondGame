@@ -20,12 +20,13 @@ public class Door extends Ground{
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction){
 		Actions actions = new Actions();
-		
 		for (Item item : actor.getInventory())
-			if (item instanceof Key)
+			if (item instanceof Key) {
 				actions.add(new UnlockAction(actor, (Key)item, this));
+				return actions;
+			}
 		
-		return actions;
+		return super.allowableActions(actor, location, direction);
 	}
 	
 	@Override

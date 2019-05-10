@@ -6,11 +6,6 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
 public class GiveAction extends Action{
-	
-	
-	/**
-	 * class for the give action
-	 */
 
 	// When using Give, the class assumes the actor already have the item,
 	// So the item should be checked for its existence before calling Give.

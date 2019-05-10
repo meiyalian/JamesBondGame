@@ -5,10 +5,6 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
-/**
- * class for the give and dissapear action. This action will let the actor 
- * give to another actor something and then dissapears
- */
 public class GiveAndDisappearAction extends Action{
 
 	Actor actor;
