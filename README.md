@@ -22,7 +22,7 @@
 
 
 ## **Enums**
-### SkillList
+### SkillList (not yet implemented, might implemented later )
 ***
 ##### Design
 - An enum named `SkillList` used to store all of the skills in the game.
