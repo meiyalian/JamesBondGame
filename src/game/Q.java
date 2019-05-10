@@ -45,7 +45,7 @@ public class Q extends NewActor{
 		
 		String dialogue = "I can give you something that will help, but I¡¯m going to need the plans.";
 		for (Item item : otherActor.getInventory())
-			if (item instanceof Key) {
+			if (item instanceof RocketPlan) {
 				actions.add(new GiveAction(otherActor, this, item));
 				dialogue = "Hand them over, I don¡¯t have all day!";
 				break;
@@ -80,7 +80,7 @@ public class Q extends NewActor{
 		
 		for (ActionFactory factory : actionFactories) {
 			Action action = factory.getAction(this, map);
-			if(action != null)
+			if(action != null && !(action instanceof AttackAction))
 				return action;
 		}
 		return super.playTurn(actions,  map,  display);

@@ -6,10 +6,12 @@ import java.util.List;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.AttackAction;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 
 /**
@@ -42,6 +44,9 @@ public class DoctorMaybe extends NewActor {
 	
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
+
+		if (this.distance(map.locationOf(this.player), map.locationOf(this)) <=1)
+			return new AttackAction(this, this.player);
 		
 		for (Action action : actions) {
 			if (action instanceof MoveActorAction)
@@ -49,6 +54,11 @@ public class DoctorMaybe extends NewActor {
 		}
 		
 		return super.playTurn(actions,  map,  display);
+	}
+	
+	
+	private int distance(Location a, Location b) {
+		return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
 	}
 
 }

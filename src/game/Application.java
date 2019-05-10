@@ -18,7 +18,7 @@ public class Application {
 		World world = new World(new Display());
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new Door(), new RocketPad());
-		GameMap gameMap;
+		GameMap gameMap, marsMap;
 
 		
 		// "R" on the left (1,3) is for testing, replace it with "." after testing.
@@ -38,6 +38,24 @@ public class Application {
 		gameMap = new GameMap(groundFactory, map);
 		world.addMap(gameMap);
 		
+		
+		
+		
+		List<String> mars = Arrays.asList(
+				"....................",
+				"..........R.........",
+				"....................",
+				"....................",
+				".....#####+#####....",
+				".....#.........#....",
+				".....#.........#....",
+				".....#.........#....",
+				".....#.........#....",
+				".....###########....");
+		
+		marsMap = new GameMap(groundFactory, mars);
+		
+		
 		NewActor player = new NewPlayer("Player", '@', 1, 100);
 		
 		
@@ -51,23 +69,28 @@ public class Application {
 		engine.getAllowableActions().clear();
 		engine.getAllowableActions().add(new DropItemAction(engine));
 		player.addItemToInventory(engine);
+		
+		Key key = new Key();
+		key.getAllowableActions().clear();
+		key.getAllowableActions().add(new DropItemAction(key));
+		player.addItemToInventory(key);
 		// ¡ü Testing code, remove after testing ¡ü
 		
 		
 		world.addPlayer(player, gameMap, 2, 2);
 		
-		Grunt grunt = new Grunt("Mongo", player);
-		gameMap.addActor(grunt, 0, 0);
-		
-		Grunt grunt2 = new Grunt("Norbert", player);
-		gameMap.addActor(grunt2, 10, 10);
-		
-		Goon goon = new Goon("Goon", player);
-		gameMap.addActor(goon, 8, 10);
-		
-		Ninja n = new Ninja("Ninja", player);
-		gameMap.addActor(n, 2, 4);
-		
+//		Grunt grunt = new Grunt("Mongo", player);
+//		gameMap.addActor(grunt, 0, 0);
+//		
+//		Grunt grunt2 = new Grunt("Norbert", player);
+//		gameMap.addActor(grunt2, 10, 10);
+//		
+//		Goon goon = new Goon("Goon", player);
+//		gameMap.addActor(goon, 8, 10);
+//		
+//		Ninja n = new Ninja("Ninja", player);
+//		gameMap.addActor(n, 2, 4);
+//		
 		Q q = new Q("Q", (NewPlayer)player);
 		gameMap.addActor(q, 10, 8);
 		
