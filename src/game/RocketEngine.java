@@ -2,8 +2,10 @@ package game;
 
 import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.Item;
+
 /**
- * Place holder class (needed for testing other Actors)
+ * A class that defines the rocket engine item, used to build the rocket and win the game.
+ * 
  */
 public class RocketEngine extends Item {
 

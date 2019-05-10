@@ -30,7 +30,7 @@ public class RocketPad extends Ground{
 	
 	
 	/**
-	 * Class that determines what actions the player may make regarding the rocket pad each turn.
+	 * Method that determines what actions the player may make regarding the rocket pad each turn.
 	 * 
 	 * @param actor the actor querying the class for available actions (usually the player).
 	 * @param location the location of the class being queried.
