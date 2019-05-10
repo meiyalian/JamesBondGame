@@ -34,7 +34,6 @@ public class Q extends NewActor{
 		item.getAllowableActions().clear();
 		item.getAllowableActions().add(new DropItemAction(item));
 		this.addItemToInventory(item);
-		//to ZAC:add rocket body in q's inventory when you implement the rocket body class:
 		
 	}
 	
@@ -43,11 +42,11 @@ public class Q extends NewActor{
 		
 		Actions actions = new Actions();
 		
-		String dialogue = "I can give you something that will help, but I¡¯m going to need the plans.";
+		String dialogue = "I can give you something that will help, but I am going to need the plans.";
 		for (Item item : otherActor.getInventory())
 			if (item instanceof RocketPlan) {
 				actions.add(new GiveAction(otherActor, this, item));
-				dialogue = "Hand them over, I don¡¯t have all day!";
+				dialogue = "Hand them over, I don't have all day!";
 				break;
 			}
 		actions.add(new TalkAction(otherActor, this, dialogue));

@@ -7,14 +7,17 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
+/**
+ * class for the rocket pad. Place rocket body and engine in here to build a rocket
+ */
 
 public class RocketPad extends Ground{
 	
 	private Actor actorInterface = new Actor("RocketPadActor", 'R', 1, 1000);
-	private NewActor player;
 	private boolean hasBody;
 	private boolean hasEngine;
 	
+
 	public RocketPad() {
 		super('R');
 		this.hasBody = false;
@@ -49,6 +52,11 @@ public class RocketPad extends Ground{
 		return actions;
 	}
 	
+	
+	/**
+	 * if the actor has the rocket body and the engine, return true to allow the actor enters in here 
+	 */
+
 	@Override
 	public boolean canActorEnter(Actor actor) {
 		return (hasBody && hasEngine);
