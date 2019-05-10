@@ -24,6 +24,8 @@ public class WanderingBehaviour implements ActionFactory {
 	// for generate random step
 	private Random rand = new Random();
 
+
+	@Override
 	/**
 	 *  
 	 *  @param actor that perform this behaviour 
@@ -31,7 +33,6 @@ public class WanderingBehaviour implements ActionFactory {
 	 *  @return: MoveActorAction random move step
 	 *  
 	 */
-	@Override
 	public Action getAction(Actor actor, GameMap map) {
 
 		ArrayList<Location> locations = new ArrayList<Location>();

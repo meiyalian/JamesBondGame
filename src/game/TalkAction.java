@@ -14,6 +14,12 @@ public class TalkAction extends Action {
 	Actor listener, speaker;
 	String dialogue;
 
+	/**
+	 * Constructor for TalkActions.
+	 * @param listener: The actor who receives message.
+	 * @param speaker: The actor who speaks.
+	 * @param dialogue: The message of the speaker.
+	 */
 	public TalkAction(Actor listener, Actor speaker, String dialogue) {
 		this.speaker = speaker;
 		this.listener = listener;

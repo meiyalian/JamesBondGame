@@ -7,8 +7,9 @@ import edu.monash.fit2099.engine.Item;
 
 /**
  * 
- * This class is the action to unlock a door.
- * (Logics still not finished, placeholder class for the moment)
+ * This class is the action to unlock or lock a door.
+ * The door can be locked or unlocked.
+ * 
  */
 
 public class UnlockAction extends Action {
@@ -17,6 +18,12 @@ public class UnlockAction extends Action {
 	Key key;
 	Door door;
 	
+	/**
+	 * Constructor for UnlockAction
+	 * @param actor: The actor that unlocks/locks a door.
+	 * @param key: The key used to unlock/lock the door.
+	 * @param door: The door object.
+	 */
 	public UnlockAction(Actor actor, Key key, Door door) {
 		this.actor = actor;
 		this.key = key;

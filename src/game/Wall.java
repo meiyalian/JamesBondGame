@@ -2,7 +2,11 @@ package game;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
-
+/**
+ * 
+ * A regular wall (Ground object) that blocks actor from entering its location.
+ *
+ */
 public class Wall extends Ground {
 
 	public Wall() {

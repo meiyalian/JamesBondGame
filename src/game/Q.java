@@ -25,7 +25,11 @@ public class Q extends NewActor{
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
 	private Display display;
 	
-	
+	/**
+	 * Constructor for Q.
+	 * @param name: The name for Q.
+	 * @param player: The current player.
+	 */
 	public Q(String name, NewPlayer player) {
 		super(name,'Q', 5, 10);
 		protagonist = player;
@@ -39,6 +43,10 @@ public class Q extends NewActor{
 	}
 	
 	@Override
+	/**
+	 * Method for implementing Talking.
+	 * If an actor is next to Q, they can talk to Q. And the dialogue will be different based on whether they have RocketPlan in their inventory.
+	 */
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		
 		Actions actions = new Actions();
@@ -62,6 +70,12 @@ public class Q extends NewActor{
 	
 	
 	@Override
+	/**
+	 * Method for implementing Give And Disappearing of Q.
+	 * Q does not have RocketPlan to begin with, and player is the only one who can give items.
+	 * So if Q has RocketPlan in his/her inventory, then it's the player who gave it to him/her.
+	 * Hence if Q has RocketPlan, then give RocketBody to the player, then disappears from the map.
+	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		this.display = display;
 		

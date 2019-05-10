@@ -15,6 +15,12 @@ public class Throw extends Action{
 	private Actor subject;
 	private Throwable item;
 	
+	/**
+	 * Constructor of ThrowActions.
+	 * @param newActor: The thrower.
+	 * @param newSubject: The actor being thrown an item at.
+	 * @param newItem: The item to be threw at the subject.
+	 */
 	public Throw(Actor newActor, Actor newSubject, Throwable newItem) {
 		this.actor = newActor;
 		this.subject = newSubject;
@@ -22,10 +28,8 @@ public class Throw extends Action{
 		
 	}
 	
-	
 	@Override
 	public String execute(Actor actor, GameMap map) {
-
 	
 		if (item.isHit()) {
 			int damage = ((WeaponItem) item).damage();
@@ -34,12 +38,9 @@ public class Throw extends Action{
 			
 			return result;
 		}
-		
 		else {
 			return actor + " misses throwing " + item.toString() + " to " + subject + ".";
 		}
-		
-		
 		
 	}
 

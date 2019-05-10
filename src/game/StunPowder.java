@@ -5,9 +5,6 @@ import java.lang.Math;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.WeaponItem;
 
-
-
-
 /**
  * Class for the stun powder which is an weaponItem that can be thrown by an actor
  *  and has 50% of chance to hit the target. The target is stunned (skip 2 turns) 

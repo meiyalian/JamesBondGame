@@ -10,6 +10,12 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * 
+ * A trap (item), an actor has to be at its location to triggers.
+ * Theoretically has the ability to do almost anything to the map it's in, including adding/removing actors.
+ *
+ */
 public class Trap extends Item {
 	
 	private GameMap map;
@@ -20,6 +26,10 @@ public class Trap extends Item {
 	
 	private ArrayList<Actor> removeActors = new ArrayList<>();
 	
+	/**
+	 * Constructor for traps.
+	 * @param map: The current map the trap is in.
+	 */
 	public Trap(GameMap map) {
 		super("Trap", 't');
 		this.map = map;
@@ -27,18 +37,29 @@ public class Trap extends Item {
 		this.allowableActions.clear();
 	}
 	
-	
+	/**
+	 * Add an actor to be spawned if the trap is triggered.
+	 * @param actor: The actor to be spawned.
+	 * @param location: The location of the actor to be spawned at.
+	 */
 	public void spawnActor(Actor actor, int[] location) {
 		this.spawnActors.add(actor);
 		this.spawnActorsLoc.add(location);
 	}
 	
+	/**
+	 * Add an actor to be removed from the map if the trap is triggered.
+	 * @param actor: The actor to be removed.
+	 */
 	public void removeActor(Actor actor) {
 		this.removeActors.add(actor);
 	}
 	
 
 	@Override
+	/**
+	 * Execute all actions (triggered trap)
+	 */
 	public Actions getAllowableActions() {
 		
 		if (!this.triggered) {

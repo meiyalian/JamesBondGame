@@ -9,7 +9,7 @@ import java.util.Random;
 
 
 /**
- *  an action for shouting an insult at other Actors.
+ *  An action for shouting an insult at other Actors.
  */
 public class ShoutAction extends Action{
 	
@@ -19,7 +19,11 @@ public class ShoutAction extends Action{
 	private Random rand = new Random();
 	
 	
-	
+	/**
+	 * Constructor for ShoutAction.
+	 * @param actor: The shouter.
+	 * @param subject: The target to be shouted at.
+	 */
  	public ShoutAction(Actor actor, Actor subject ) {
 		this.shouter = actor;
 		this.receiver = subject;

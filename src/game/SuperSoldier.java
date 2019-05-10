@@ -9,11 +9,21 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.GameMap;
 
+/**
+ * 
+ * The enhanced version of Soldier, much stronger and follows the player instead of standing still.
+ *
+ */
 public class SuperSoldier extends Soldier {
 
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
 	
 	
+	/**
+	 * Constructor for Super Soldiers.
+	 * @param name: SuperSoldier's name.
+	 * @param player: The current player.
+	 */
 	public SuperSoldier(String name, NewActor player) {
 		super(name, player);
 		this.damage = 15;
@@ -32,6 +42,9 @@ public class SuperSoldier extends Soldier {
 	}
 
 	@Override
+	/**
+	 * Method for implementing following the player, if near player let super class to handle action.
+	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		for (ActionFactory factory : actionFactories) {
 			Action action = factory.getAction(this, map);

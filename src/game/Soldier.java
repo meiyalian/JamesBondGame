@@ -24,6 +24,9 @@ public class Soldier extends NewActor {
 	}
 	
 	@Override
+	/**
+	 * Method to make Soldiers to stay still, and attacks anyone nears them.
+	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		Location here = map.locationOf(this);
 		Location there = map.locationOf(target);
