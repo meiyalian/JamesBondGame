@@ -8,14 +8,14 @@ import edu.monash.fit2099.engine.Item;
 
 
 /**
- *  action that can be triggered when having a medicine item 
+ *  Action that can be triggered when having a medicine item 
  */
 public class GetHeal extends Action{
 	
 	private int healing_point;
 	
 	public GetHeal(int hp) {
-		healing_point = hp;
+		healing_point = (hp > 0) ? hp:0;
 		
 	}
 

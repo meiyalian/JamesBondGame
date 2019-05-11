@@ -59,6 +59,23 @@ public abstract class NewActor extends Actor{
 		return isStunned;
 	}
 	
+	@Override
+	/**
+	 * Only heal if heal points is greater than 0.
+	 */
+	public void heal(int hp) {
+		hitPoints = hitPoints + ((hp > 0) ? hp:0);
+		hitPoints = Math.min(hitPoints, maxHitPoints);
+	}
+	
+	@Override
+	/**
+	 * Only damage if the damage is greater than 0.
+	 */
+	public void hurt(int hp) {
+		hitPoints = hitPoints - ((hp > 0) ? hp:0);
+	}
+	
 	public int getDamage() {
 		return this.damage;
 	}
