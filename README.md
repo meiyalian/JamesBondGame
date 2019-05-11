@@ -2,7 +2,9 @@
 ##### This document explains the design choices that were made to implement the required funtionality to the game, as well as the pros and cons for each of the design choices.
 
 ## **Map**
-##### The layouts of maps in this game will be hardcoded as auto generated maps might not be guaranteed to always have required features such as a locked room, which needs to be implemented via a combination of `Locations`.
+##### The layouts of maps in this game will be hardcoded as auto generated maps might not be guaranteed to always have required features such as a locked room, which needs to be implemented via a combination of `Grounds`.
+##### As a bonus, a second map `Mars` has also been added to the game. The player can access this map by an activiated `RocketPad` which requires the `RocketBody` and `RocketEngine`. After activating, the player can travel between `Mars` and the main map through the `RocketPad` (There will also be an activiated `RocketPad` on Mars that allows `Actors` to go back to the main map).
+##### Mars contains a large locked room which is guarded by 2 `Soldiers`, inside the room it has a `MagicPill` that increases player's damage, but is guarded by 4 more `Soldiers`. Also if the player go to `Location` of the `MagicPill`, a `Trap` will be triggered. Which removes all `Soldiers` from Mars and spawning 4 `SuperSoldiers` that follows and attacks the player. It's almost not possible to fight off the `SuperSoldiers`, so the player need to run back to the main map via `RocketPad`.
 
 ## **Interfaces**
 
