@@ -51,9 +51,62 @@
 - Create a `GiveAction` class that extends `Action`.
 - An `Actor` (giver) can give one `Item` from its inventory to another `Actor` (taker).
 - This feature is implemented by adding the `Item` to the taker's inventory, and removing the `Item` from the giver's inventory.
-
 ##### Pros
 - Flexibility, any `Actor` can give items to any `Actor`.
+
+### Give And Disappear
+***
+##### Design
+- Create a `GiveAndDisappearAction` class that extends `Action`.
+- An `Actor` can give one `Item` to another `Actor` (using the `Give` action), then (the giver) disappears from the map.
+- The giver can also choose a custom dialogue when they disappear.
+##### Pros
+- This action was creating with the intention of implementing Q's unique features, but can also be used by other `Actors` if needed.
+##### Cons
+- Redundancy. Arbitrary to combined two `Actions` into one.
+
+### GetHeal (Bonus)
+***
+##### Design
+- Create a `GetHeal` class that extends `Action` that heals `Actors`.
+- The action can be triggered when the `Actor` having a `Medicine` item.
+- Has an attribute to store the amount of hit points to be healed if `Actor` executes this action.
+- If the attribute is negative, it will be adjusted to 0 to prevent damaging the `Actor`.
+- Heals the `Actor` that executes this action by the stored hit points.
+- Removes the `Medicine` from `Actor`'s inventory after healing.
+##### Pros
+- Must have an `Item` in order to heal the `Actor`, preventing the abuse of this `Action` in the game.
+
+### ModifyDamage (Bonus)
+***
+##### Design
+- Create a `ModifyDamage` class that extends `Action`.
+- Can change the damage of an `Actor` towards others (Both increasing and decreasing).
+##### Pros
+- Uses downcasting to modify `Actors` damage via their own object's method, hence to prevent logical error.
+##### Cons
+- The action does not required `Items` or whatsoever to be executed, so it's possible to abuse (repeat) this action in game to modify `Actors`' damage.
+
+### Talk
+***
+##### Design
+- Create a `TalkAction` that extends `Action`.
+- An `Actor` can speak to another `Actor` with a custom dialogue(String).
+- The dialogue will be printed for the user to see.
+##### Pros
+- The dialogue can be choosen by the speaker, instead of speaking static words.
+##### Cons
+- Possible redundant functionality with the `Shouting` class, will be fixed in the next assignment.
+
+### Lock/Unlock
+***
+##### Design
+- Create a `Unlock` class that extends `Action`.
+- Allows an `Actor` to lock or unlock a `Door` using a `Key` in their inventory.
+##### Pros
+- Uses an `Action` class so the `Actor` can choose whether to lock/unlock the `Door` or not.
+##### Cons
+- As a `Door`'s `Location` cannot be entered if the `Door` is locked, some edge cases can cause logical errors (e.g. An `Actor` is at the `Location` of an unlocked `Door`, but another `Actor` locks that `Door` instead).
 
 
 ## **Behaviours**
@@ -79,7 +132,7 @@
 - Its display symbol changes based on whether it's locked or not.
 - Has similar features of a `Wall` when it's locked.
 - Has similar features of a `Floor` when it's unlocked.
-- Can be locked/unlocked by `Actors` at the location, if they have a `Key` in their inventory.
+- Can be locked/unlocked by `Actors` near the location, if they have a `Key` in their inventory.
 - If `Actor` has more than 1 `Key` in their inventory, allowable actions to lock/unlock the `Door`.
 ##### Pros
 - Has the capacity to switch between locked and unlocked.
@@ -151,11 +204,45 @@
 ##### Pros
 - Flexibility. As a `WeaponItem` it can be used by any `Actor` that owns this item and is allowed to `Throw`.
 ##### Cons
-- If this item will only be possessed by very few entities, then this class unnecessarily increased the complexity of the game. 
+- If this item will only be possessed by very few `Actors`, then this class unnecessarily increased the complexity of the game. 
 
+### MagicPill (Bonus)
+***
+##### Design
+- Creates a `MagicPill` class that extends `Item`.
+- Can `ModifyDamage` of an `Actor`. (Increase of decrease of their damage)
+- Cannot be picked up by default (intended to be used as an furniture `Item`).
+##### Pros
+- Uses an `ModifyDamage` action to execute the modification, instead of making this the only class that can modify `Actor`'s damage.
+- Can do both increase and decrease for `Actor`'s damage.
+##### Cons
+- Not allowed to be picked up by `Actors`, so the item must be used at the location.
+
+### Medicine (Bonus)
+***
+##### Design
+- Creates a `Medicine` class that extends `Item`.
+- Can `Heal` an `Actor` with specific amount of hit points.
+##### Pros
+- Use the representation of an `Item` to `Heal` `Actors`, so they can choose when to execute it, instead of executing is immediately.
+- Uses `GetHeal` action to execute the healing, so if other class also wants to perform healing, the code need not to be repeated.
+##### Cons
+- Can enter negative values for healing points. However, these cases will be catched and fixed by `GetHeal` and/or `NewActor`.
+
+### Trap (Bonus)
+***
+##### Design
+- Creates a `Trap` class that extends `Item`.
+- Cannot be picked up.
+- Will be triggered if an `Actor` enter the `Location` that this `Item` is in.
+- Theoretically can perform anything to the current map its in.
+- Including but not limited to: Spawning `Actors` to this map's specific `Locations`, Removing specific `Actors` from the map, etc.
+##### Pros
+- Huge flexibility. Can use this to modify many features in the game in one turn.
+##### Cons
+- Issues with encapsulation and data hiding, since it has the reference of the current map. However, the issue can be limited since `Traps` are only allows to be generated in the `Main Driver Class` of this game, so it's static and programmed before launching the game. No `Traps` are allowed to be created once the game has started.
 
 ## **Actors**
-
 ### NewActor
 ***
 ##### Design
@@ -164,6 +251,10 @@
 - By default do not `PickUp` or `Drop` `Items`.
 - Automatically attacks `Actors` near them (Need to be controlled in subclasses in needed to).
 - Compare to the `Actor` class, it has a Boolean attribute `isStunned` which records if the `Actor` is stunned or not in order to implement the affect caused by throwing a `StunPowder` to an `Actor` (the `Actor` will skip 2 turns). 
+- Only heals the `Actor` if healing point is positive.
+- Only damage the `Actor` if damage point is positive.
+- Can also change the `Actor`'s damage to other `Actors`.
+- Prevents an `Actor`'s damage to others become less than 0.
 
 ### NewPlayer
 ***
@@ -235,3 +326,21 @@
 - Has half the hit points and does half the damage of `Grunts`.
 ##### Pros
 - Simplicity. The logic for this class are short and simple.
+
+### Soldiers (Bonus)
+***
+##### Design
+- Create a `Soldier` class that extends `NewActor`.
+- Soldiers has 20 hit points and does 5 damage.
+- Soldiers does not move around the map.
+- Soldiers attacks `Actors` nearby.
+
+### Super Soldiers (Bonus)
+***
+##### Design
+- Create a `SuperSoldier` class that extends `Soldier`.
+- Super soldiers has 50 hit points and does 15 damage.
+- Super soldiers has `FollowingBehaviour` that follows the `Player`.
+- Super soldiers has a `Key` in their inventory.
+##### Pros
+- Inheritance. Prevents repeating code from `Soldier` class.
