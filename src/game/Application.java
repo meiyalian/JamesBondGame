@@ -21,7 +21,6 @@ public class Application {
 
 	public static void main(String[] args) {
 		World world = new World(new Display());
-
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new Door(), new RocketPad());
 		GameMap gameMap, marsMap;
 
@@ -44,6 +43,8 @@ public class Application {
 		
 		// Always add the map to the world  before adding any actors
 		gameMap = new GameMap(groundFactory, map);
+		
+		
 		world.addMap(gameMap);
 		
 		
@@ -68,9 +69,8 @@ public class Application {
 		
 		
 		NewActor player = new NewPlayer("Player", '@', 1, 100);
-		
-		
-		// ¡ý Testing code, remove after testing ¡ý
+		gameMap.at(2,1).setGround(new OxygenDispenser(gameMap,2,1,player));
+		// ï¿½ï¿½ Testing code, remove after testing ï¿½ï¿½
 		RocketBody body = new RocketBody();
 		body.getAllowableActions().clear();
 		body.getAllowableActions().add(new DropItemAction(body));
@@ -90,7 +90,7 @@ public class Application {
 		player.addItemToInventory(key);
 		
 		player.setDamage(15);
-		// ¡ü Testing code, remove after testing ¡ü
+		// ï¿½ï¿½ Testing code, remove after testing ï¿½ï¿½
 		
 		
 		world.addPlayer(player, gameMap, 2, 2);
