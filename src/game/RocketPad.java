@@ -75,7 +75,7 @@ public class RocketPad extends Ground{
 	 */
 	@Override
 	public boolean canActorEnter(Actor actor) {
-		return (hasBody && hasEngine);
+		return (hasBody && hasEngine && hasSkill(SkillList.SPACETRAVEL));
 	}
 	
 	/**
@@ -85,7 +85,7 @@ public class RocketPad extends Ground{
 	 */
 	@Override
 	public boolean blocksThrownObjects() {
-		return !(hasBody || hasEngine);
+		return !(hasBody || hasEngine );
 	}
 	
 	/**

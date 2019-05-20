@@ -85,11 +85,7 @@ public class NewPlayer extends NewActor{
 	 * @return the Action selected by the user
 	 */
 	protected Action showMenu(Actions actions, Display display) {
-		
-
-		
-		
-		
+	
 		ArrayList<Character> freeChars = new ArrayList<Character>();
 		HashMap<Character, Action> keyToActionMap = new HashMap<Character, Action>();
 
@@ -129,8 +125,20 @@ public class NewPlayer extends NewActor{
 	}
 
 	
-
-
+	
+	
+	public int checkOxygenPoints() {
+		
+		int point = 0;
+		for (Item i : inventory) {
+			if(i instanceof OxygenTank) {
+				point ++;
+			}
+		}
+		
+		return point;
+	}
+	
 }
 
 

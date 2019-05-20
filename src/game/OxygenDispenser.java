@@ -6,6 +6,12 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
+
+/**
+ * Class for the oxygen dispenser
+ * 
+ */
+
 public class OxygenDispenser extends Ground{
 	
 	private boolean hasOxygen;
@@ -31,6 +37,14 @@ public class OxygenDispenser extends Ground{
 		
 	}
 	
+	
+	/**
+	 * if there is already an oxygen tank on the position of the oxygen dispenser or the oxgen 
+	 * dispenser is currently producing the oxygen tank, the press button action will not be 
+	 * added to the allowable actions list
+	 * 
+	 */
+	
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {
 		Actions actions = new Actions();
@@ -45,6 +59,7 @@ public class OxygenDispenser extends Ground{
 		
 		if(! hasOxygen && turnCounter ==1) {
 			produce();
+			this.hasOxygen = true;
 			turnCounter =0;
 		}
 		
@@ -54,11 +69,20 @@ public class OxygenDispenser extends Ground{
 	}
 	
 	
+	/**
+	 * the description of this dispenser item
+	 */
+	
 	public String description() {
 		return "oxygen dispenser";
 	}
 	
+	
+	
 
+	/**
+	 * method to produce an oxygen tank in the map (in the location of the oxygen dispenser)
+	 */
 
 	public String produce() {
 		if (turnCounter == 0) {
@@ -70,8 +94,7 @@ public class OxygenDispenser extends Ground{
 
 			OxygenTank tank = new OxygenTank(targetPlayer);
 			this.map.addItem(tank,x,y);
-			this.hasOxygen = true;
-			return "Oxygen tank is ready to pick up!";
+			
 		}
 		
 		return "";
@@ -81,9 +104,19 @@ public class OxygenDispenser extends Ground{
 	}
 	
 	
+	
+	/**
+	 * if there is an oxygen produced, player is allowed 
+	 * to enter the location and pick the oxygen tank up. 
+	 * 
+	 *Otherwise player cannot enter this position since the dispenser
+	 *is a machine rather than a ground. 
+	 */
+	
+	
 	@Override
 	public boolean canActorEnter(Actor actor) {
-		if(hasOxygen) {
+		if(hasOxygen && actor instanceof NewPlayer) {
 			return true;
 		}
 		

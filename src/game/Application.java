@@ -91,7 +91,7 @@ public class Application {
 		world.addPlayer(player, gameMap, 2, 2);
 		
 		Grunt grunt = new Grunt("Mongo", player);
-		gameMap.addActor(grunt, 0, 0);
+		gameMap.addActor(grunt, 5, 0);
 		
 		Grunt grunt2 = new Grunt("Norbert", player);
 		gameMap.addActor(grunt2, 10, 10);

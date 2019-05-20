@@ -4,6 +4,12 @@ package game;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 
+
+/**
+ * Class for the oxygen tank
+ * 
+ */
+
 public class OxygenTank extends Item {
 	
 	private int oxygenPoints;
@@ -18,7 +24,12 @@ public class OxygenTank extends Item {
 	
 	
 	
-	
+	/**
+	 * method to change( subtract) the oxygen points of the tank
+	 */
+	public void usedOxygen() {
+		this.oxygenPoints --;
+	}
 	
 	
 
