@@ -115,9 +115,18 @@ public class Application {
 		gameMap.addItem(m, 9, 7);
 		
 		
+//		Item portalEarth = Item.newFurniture("Portal", 'R');
+//		portalEarth.getAllowableActions().add(new MoveActorAction(moonMap.at(10, 1), "to Moon"));
+//		gameMap.at(16, 2).addItem(portalEarth);
+		
+		RocketPad earthActRp = new RocketPad();
+		earthActRp.addBody();
+		earthActRp.addEngine();
+		gameMap.at(3, 2).setGround(earthActRp);
+		
 		Item portalEarth = Item.newFurniture("Portal", 'R');
 		portalEarth.getAllowableActions().add(new MoveActorAction(moonMap.at(10, 1), "to Moon"));
-		gameMap.at(16, 2).addItem(portalEarth);
+		gameMap.at(3, 2).addItem(portalEarth);
 		
 		
 		
@@ -128,8 +137,13 @@ public class Application {
 		moonActRp.addEngine();
 		moonMap.at(10, 1).setGround(moonActRp);
 		
+		
+//		Item portalMoon = Item.newFurniture("Portal", 'R');
+//		portalMoon.getAllowableActions().add(new MoveActorAction(gameMap.at(16, 2), "to Earth"));
+//		moonMap.at(10, 1).addItem(portalMoon);
+		
 		Item portalMoon = Item.newFurniture("Portal", 'R');
-		portalMoon.getAllowableActions().add(new MoveActorAction(gameMap.at(16, 2), "to Earth"));
+		portalMoon.getAllowableActions().add(new MoveActorAction(gameMap.at(3, 2), "to Earth"));
 		moonMap.at(10, 1).addItem(portalMoon);
 		
 		//----------------------------------------------------------------------------------
