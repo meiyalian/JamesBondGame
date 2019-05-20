@@ -94,7 +94,7 @@ public class OxygenDispenser extends Ground{
 
 			OxygenTank tank = new OxygenTank(targetPlayer);
 			this.map.addItem(tank,x,y);
-			
+
 		}
 		
 		return "";
@@ -116,12 +116,14 @@ public class OxygenDispenser extends Ground{
 	
 	@Override
 	public boolean canActorEnter(Actor actor) {
-		if(hasOxygen && actor instanceof NewPlayer) {
+		if(this.hasOxygen && actor instanceof NewPlayer) {
 			return true;
+
 		}
-		
 		return false;
+		
 	}
+	
 
 	
 }

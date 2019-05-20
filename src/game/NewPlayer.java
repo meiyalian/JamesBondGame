@@ -25,7 +25,7 @@ public class NewPlayer extends NewActor{
 	
 	
 	private int stunTurnCounter = 0; // counters that record how many turns has the player been stunned
-
+	private boolean atMoon = false;
 	
 
 	/**
@@ -62,16 +62,20 @@ public class NewPlayer extends NewActor{
 		return showMenu(actions, display);
 		
 		}
-
 		else {
 			stunTurnCounter ++;
 			display.println(this.name + " has been stunned, cannot do anything in this turn.");
 
-			if (stunTurnCounter >=2) {
+			if (stunTurnCounter ==2) {
 				stunTurnCounter = 0;
 				isStunned = false;
+				
 			}
+			
+			
 			return new SkipTurnAction();
+			
+			
 			
 		}
 			

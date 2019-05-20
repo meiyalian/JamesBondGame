@@ -3,6 +3,7 @@ package game;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.monash.fit2099.demo.Crater;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DropItemAction;
@@ -21,7 +22,7 @@ public class Application {
 
 	public static void main(String[] args) {
 		World world = new World(new Display());
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new Door(), new RocketPad());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new Door(), new RocketPad(),new Crater());
 		GameMap gameMap, moonMap, marsMap;
 
 		// (x,y): x is horizontal, y is vertical
@@ -48,18 +49,18 @@ public class Application {
 		
 		// The map for moon
 		List<String> moon = Arrays.asList(
-				"....................",     // 0
-				"....................",		// 1
-				"....................",		// 2
-				"....................",     // 3
-				"....................",		// 4
-				"....................",		// 5
-				"....................",     // 6
-				"....................",		// 7
-				"....................",		// 8
-				"....................",     // 9
-				"....................",		// 10
-				"....................");    // 11
+				"oooooooooooooooooooooooooo",     // 0
+				"oooooooooooooooooooooooooo",		// 1
+				"oooooooooooooooooooooooooo",		// 2
+				"oooooooooooooooooooooooooo",     // 3
+				"oooooooooooooooooooooooooo",		// 4
+				"oooooooooooooooooooooooooo",		// 5
+				"oooooooooooooooooooooooooo",     // 6
+				"oooooooooooooooooooooooooo",		// 7
+				"oooooooooooooooooooooooooo",		// 8
+				"oooooooooooooooooooooooooo",     // 9
+				"oooooooooooooooooooooooooo",		// 10
+				"oooooooooooooooooooooooooo");    // 11
 		
 		moonMap = new GameMap(groundFactory, moon);
 		world.addMap(moonMap);
@@ -86,6 +87,8 @@ public class Application {
 		
 		
 		NewActor player = new NewPlayer("Player", '@', 1, 100);
+
+		
 		gameMap.at(2,1).setGround(new OxygenDispenser(gameMap,2,1,player));
 		
 		world.addPlayer(player, gameMap, 2, 2);
@@ -127,6 +130,7 @@ public class Application {
 		Item portalEarth = Item.newFurniture("Portal", 'R');
 		portalEarth.getAllowableActions().add(new MoveActorAction(moonMap.at(10, 1), "to Moon"));
 		gameMap.at(3, 2).addItem(portalEarth);
+		
 		
 		
 		

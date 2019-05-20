@@ -83,4 +83,5 @@ public abstract class NewActor extends Actor{
 	public void setDamage(int damage) {
 		this.damage = (damage >= 0) ? damage:0;
 	}
+	
 }

@@ -11,7 +11,8 @@ import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.SkipTurnAction;
 /**
  * 
- * The class for Ninjas, Ninja will throw stun powders at player if the player is within 5 distance, and backing away by 1 distance.
+ * The class for Ninjas, Ninja will throw stun powders at
+ *  player if the player is within 5 distance, and backing away by 1 distance.
  *
  */
 public class Ninja extends NewActor{
@@ -24,7 +25,7 @@ public class Ninja extends NewActor{
 	 * @param player: The current player.
 	 */
 	public Ninja(String name, NewActor player) {
-		super(name, 'n', 20,20);
+		super(name, 'n', 5,20);
 		target = player;
 		
 		Key item = new Key();
@@ -53,8 +54,6 @@ public class Ninja extends NewActor{
 		}
 		
 		else {
-			
-			
 			StunPowder sp = new StunPowder(target);
 			
 			Throw t = new Throw(this, target,sp);
