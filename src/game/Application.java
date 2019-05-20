@@ -22,7 +22,7 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new Door(), new RocketPad());
-		GameMap gameMap, marsMap;
+		GameMap gameMap, moonMap, marsMap;
 
 		// (x,y): x is horizontal, y is vertical
 		
@@ -43,9 +43,26 @@ public class Application {
 		
 		// Always add the map to the world  before adding any actors
 		gameMap = new GameMap(groundFactory, map);
-		
-		
 		world.addMap(gameMap);
+		
+		
+		// The map for moon
+		List<String> moon = Arrays.asList(
+				"....................",     // 0
+				"....................",		// 1
+				"....................",		// 2
+				"....................",     // 3
+				"....................",		// 4
+				"....................",		// 5
+				"....................",     // 6
+				"....................",		// 7
+				"....................",		// 8
+				"....................",     // 9
+				"....................",		// 10
+				"....................");    // 11
+		
+		moonMap = new GameMap(groundFactory, moon);
+		world.addMap(moonMap);
 		
 		
 		// The map for mars
@@ -62,7 +79,7 @@ public class Application {
 				".....###########....");	// 9
 		
 		marsMap = new GameMap(groundFactory, mars);
-		world.addMap(marsMap);
+		//world.addMap(marsMap);
 		
 		
 		
@@ -70,28 +87,6 @@ public class Application {
 		
 		NewActor player = new NewPlayer("Player", '@', 1, 100);
 		gameMap.at(2,1).setGround(new OxygenDispenser(gameMap,2,1,player));
-		// �� Testing code, remove after testing ��
-		RocketBody body = new RocketBody();
-		body.getAllowableActions().clear();
-		body.getAllowableActions().add(new DropItemAction(body));
-		player.addItemToInventory(body);
-		
-		RocketEngine engine = new RocketEngine();
-		engine.getAllowableActions().clear();
-		engine.getAllowableActions().add(new DropItemAction(engine));
-		player.addItemToInventory(engine);
-		
-		Key key = new Key();
-		key.getAllowableActions().clear();
-		key.getAllowableActions().add(new DropItemAction(key));
-		player.addItemToInventory(key);
-		player.addItemToInventory(key);
-		player.addItemToInventory(key);
-		player.addItemToInventory(key);
-		
-		player.setDamage(15);
-		// �� Testing code, remove after testing ��
-		
 		
 		world.addPlayer(player, gameMap, 2, 2);
 		
@@ -120,59 +115,70 @@ public class Application {
 		gameMap.addItem(m, 9, 7);
 		
 		
-		Item p1 = Item.newFurniture("Portal", 'R');
-		p1.getAllowableActions().add(new MoveActorAction(marsMap.at(10, 1), "to Mars"));
-		gameMap.at(16, 2).addItem(p1);
+		Item portalEarth = Item.newFurniture("Portal", 'R');
+		portalEarth.getAllowableActions().add(new MoveActorAction(moonMap.at(10, 1), "to Moon"));
+		gameMap.at(16, 2).addItem(portalEarth);
 		
 		
 		
 		//-------------------------------------------------------------------------------
 
-		RocketPad actRp = new RocketPad();
-		actRp.addBody();
-		actRp.addEngine();
-		marsMap.at(10, 1).setGround(actRp);
+		RocketPad moonActRp = new RocketPad();
+		moonActRp.addBody();
+		moonActRp.addEngine();
+		moonMap.at(10, 1).setGround(moonActRp);
 		
-		Item p2 = Item.newFurniture("Portal", 'R');
-		p2.getAllowableActions().add(new MoveActorAction(gameMap.at(16, 2), "to Earth"));
-		marsMap.at(10, 1).addItem(p2);
+		Item portalMoon = Item.newFurniture("Portal", 'R');
+		portalMoon.getAllowableActions().add(new MoveActorAction(gameMap.at(16, 2), "to Earth"));
+		moonMap.at(10, 1).addItem(portalMoon);
 		
+		//----------------------------------------------------------------------------------
 		
-		MagicPill mp = new MagicPill(20);
-		marsMap.addItem(mp, 10, 7);
-		
-		Soldier[] soldiers = new Soldier[6];
-		soldiers[0] = new Soldier("Soldier1", player);
-		soldiers[1] = new Soldier("Soldier2", player);
-		soldiers[2] = new Soldier("Soldier3", player);
-		soldiers[3] = new Soldier("Soldier4", player);
-		soldiers[4] = new Soldier("Soldier5", player);
-		soldiers[5] = new Soldier("Soldier6", player);
-		
-		int[][] sodLocs = {{9,3}, {11,3}, {9,7}, {11,7}, {10,6}, {10,8}};
-
-		for (int i = 0; i < 6; i++)
-			marsMap.addActor(soldiers[i], sodLocs[i][0], sodLocs[i][1]);
-		
-		
-		SuperSoldier[] spS = new SuperSoldier[4];
-		spS[0] = new SuperSoldier("SuperSoldier1", player);
-		spS[1] = new SuperSoldier("SuperSoldier2", player);
-		spS[2] = new SuperSoldier("SuperSoldier3", player);
-		spS[3] = new SuperSoldier("SuperSoldier4", player);
-		
-		int[][] spSLocs = {{6,5}, {6,6}, {14,5}, {14,6}};
-		
-		
-		Trap trap1 = new Trap(marsMap);
-		for (Actor actor : soldiers)
-			trap1.removeActor(actor);
-		for (int i = 0; i < 4; i++)
-			trap1.spawnActor(spS[i], spSLocs[i]);
-
-		
-		marsMap.at(10, 7).addItem(trap1);
-		
+//		RocketPad actRp = new RocketPad();
+//		actRp.addBody();
+//		actRp.addEngine();
+//		marsMap.at(10, 1).setGround(actRp);
+//		
+//		Item portalMars = Item.newFurniture("Portal", 'R');
+//		portalMars.getAllowableActions().add(new MoveActorAction(gameMap.at(16, 2), "to Earth"));
+//		marsMap.at(10, 1).addItem(portalMars);
+//		
+//		
+//		MagicPill mp = new MagicPill(20);
+//		marsMap.addItem(mp, 10, 7);
+//		
+//		Soldier[] soldiers = new Soldier[6];
+//		soldiers[0] = new Soldier("Soldier1", player);
+//		soldiers[1] = new Soldier("Soldier2", player);
+//		soldiers[2] = new Soldier("Soldier3", player);
+//		soldiers[3] = new Soldier("Soldier4", player);
+//		soldiers[4] = new Soldier("Soldier5", player);
+//		soldiers[5] = new Soldier("Soldier6", player);
+//		
+//		int[][] sodLocs = {{9,3}, {11,3}, {9,7}, {11,7}, {10,6}, {10,8}};
+//
+//		for (int i = 0; i < 6; i++)
+//			marsMap.addActor(soldiers[i], sodLocs[i][0], sodLocs[i][1]);
+//		
+//		
+//		SuperSoldier[] spS = new SuperSoldier[4];
+//		spS[0] = new SuperSoldier("SuperSoldier1", player);
+//		spS[1] = new SuperSoldier("SuperSoldier2", player);
+//		spS[2] = new SuperSoldier("SuperSoldier3", player);
+//		spS[3] = new SuperSoldier("SuperSoldier4", player);
+//		
+//		int[][] spSLocs = {{6,5}, {6,6}, {14,5}, {14,6}};
+//		
+//		
+//		Trap trap1 = new Trap(marsMap);
+//		for (Actor actor : soldiers)
+//			trap1.removeActor(actor);
+//		for (int i = 0; i < 4; i++)
+//			trap1.spawnActor(spS[i], spSLocs[i]);
+//
+//		
+//		marsMap.at(10, 7).addItem(trap1);
+//		
 		
 		// Put any modifications of maps/actors/items above this code.
 		world.run();
