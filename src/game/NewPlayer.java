@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.SkipTurnAction;
 
 
@@ -25,7 +26,8 @@ public class NewPlayer extends NewActor{
 	
 	
 	private int stunTurnCounter = 0; // counters that record how many turns has the player been stunned
-	private boolean atMoon = false;
+	private GameMap earthMap;
+	
 	
 
 	/**
@@ -37,8 +39,9 @@ public class NewPlayer extends NewActor{
 	 * @param hitPoints Player's starting number of hitpoints
 	 */
 
-	public NewPlayer(String name, char displayChar, int priority, int hitPoints) {
+	public NewPlayer(String name, char displayChar, int priority, int hitPoints, GameMap homeMap) {
 		super(name, displayChar, priority, hitPoints);
+		earthMap = homeMap;
 	}
 	
 	
@@ -58,6 +61,42 @@ public class NewPlayer extends NewActor{
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		
+		
+		if (map.locationOf(this).getGround() instanceof MoonCrater) {
+			
+		
+			display.println( Integer.toString(checkOxygenPoints()-1) + " oxygen points left");
+			
+
+			for (Item item: this.getInventory() ) {
+				if (item instanceof OxygenTank) {
+					if (((OxygenTank) item).getPoints() ==0) {
+						this.removeItemFromInventory(item);
+					}
+
+					if (((OxygenTank) item).getPoints() >0) {
+						((OxygenTank) item).usedOxygen();
+						break;
+			}
+					}
+				}
+			
+			
+			int oxygenPoint = this.checkOxygenPoints();
+		
+			if(oxygenPoint<= 0) {
+				
+				display.println( "No oxygen left. Going back to Earth. ");
+				return new MoveActorAction(earthMap.at(3, 2), "to Earth ");
+			}
+			
+			else {
+				return showMenu(actions, display);
+			}
+			
+			}
+		
+		
 		if (! isStunned){
 		return showMenu(actions, display);
 		
@@ -69,16 +108,10 @@ public class NewPlayer extends NewActor{
 			if (stunTurnCounter ==2) {
 				stunTurnCounter = 0;
 				isStunned = false;
-				
 			}
 			
-			
 			return new SkipTurnAction();
-			
-			
-			
 		}
-			
 	}
 
 	/**
@@ -92,7 +125,8 @@ public class NewPlayer extends NewActor{
 	
 		ArrayList<Character> freeChars = new ArrayList<Character>();
 		HashMap<Character, Action> keyToActionMap = new HashMap<Character, Action>();
-
+		
+	
 		for (char i = 'a'; i <= 'z'; i++)
 			freeChars.add(i);
 
@@ -125,6 +159,9 @@ public class NewPlayer extends NewActor{
 			key = display.readChar();
 		} while (!keyToActionMap.containsKey(key));
 		
+		
+		
+		
 		return keyToActionMap.get(key);
 	}
 
@@ -134,14 +171,16 @@ public class NewPlayer extends NewActor{
 	public int checkOxygenPoints() {
 		
 		int point = 0;
-		for (Item i : inventory) {
+		for (Item i : this.getInventory() ) {
 			if(i instanceof OxygenTank) {
-				point ++;
+				point += ((OxygenTank) i).getPoints();
 			}
 		}
-		
 		return point;
 	}
+	
+	
+
 	
 }
 

@@ -75,8 +75,9 @@ public class RocketPad extends Ground{
 	 */
 	@Override
 	public boolean canActorEnter(Actor actor) {
-		return (hasBody && hasEngine);
-		//&& hasSkill(SkillList.SPACETRAVEL)
+		
+		return (hasBody && hasEngine && actor instanceof NewPlayer && actor.hasSkill(SkillList.SPACETRAVEL)  
+				&& ((NewPlayer) actor).checkOxygenPoints() >0 );
 	}
 	
 	/**

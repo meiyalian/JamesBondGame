@@ -18,7 +18,7 @@ public class OxygenTank extends Item {
 
 	public OxygenTank(Actor newCarrier) {
 		super("Oxygen tank", 'O');
-		oxygenPoints = 10;
+		oxygenPoints = 2;
 		carrier = newCarrier;
 	}
 	
@@ -28,9 +28,13 @@ public class OxygenTank extends Item {
 	 * method to change( subtract) the oxygen points of the tank
 	 */
 	public void usedOxygen() {
-		this.oxygenPoints --;
+		this.oxygenPoints -=1;
 	}
 	
+	
+	public int getPoints() {
+		return oxygenPoints;
+	}
 	
 
 }

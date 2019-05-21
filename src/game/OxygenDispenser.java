@@ -16,21 +16,21 @@ public class OxygenDispenser extends Ground{
 	
 	private boolean hasOxygen;
 	private GameMap map;
-	private int turnCounter;
 	private int x;
 	private int y;
 	private Actor targetPlayer;
-	
+	private boolean pressed;
+
 	
 	
 	public OxygenDispenser(GameMap gameMap, int x_co, int y_co, Actor player) {
 		super('D');
 		this.hasOxygen = false;
 		map = gameMap;
-		turnCounter = 0;
 		x = x_co;
 		y = y_co;
 		targetPlayer = player;
+	
 		
 		
 
@@ -52,19 +52,13 @@ public class OxygenDispenser extends Ground{
 		if(this.map.at(x,y).getItems().size() ==0) {
 			hasOxygen = false;
 		}
-		
-		if(! hasOxygen && turnCounter ==0) {
+
+		if(! hasOxygen ) {
 			actions.add(new PressButtonAction(this, "Oxygen Tank"));
-		}
-		
-		if(! hasOxygen && turnCounter ==1) {
-			produce();
-			this.hasOxygen = true;
-			turnCounter =0;
+			
 		}
 		
 		return actions;
-	
 	
 	}
 	
@@ -84,21 +78,15 @@ public class OxygenDispenser extends Ground{
 	 * method to produce an oxygen tank in the map (in the location of the oxygen dispenser)
 	 */
 
-	public String produce() {
-		if (turnCounter == 0) {
-			turnCounter = 1;
-			return "Stay in place. Producing oxygen ...";
-		}
+	public void produce() {
 		
 		if(hasOxygen == false) {
 
 			OxygenTank tank = new OxygenTank(targetPlayer);
 			this.map.addItem(tank,x,y);
-
+			this.hasOxygen = true;
 		}
-		
-		return "";
-		
+
 		
 		
 	}
@@ -124,6 +112,7 @@ public class OxygenDispenser extends Ground{
 		
 	}
 	
+
 
 	
 }

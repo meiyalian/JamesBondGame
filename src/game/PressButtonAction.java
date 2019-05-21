@@ -27,8 +27,9 @@ public class PressButtonAction extends Action {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		
-		String produce = dispenser.produce();
-		return produce ;
+		//dispenser.setPressed();
+		dispenser.produce();
+		return this.produceDescrip + " produced." ;
 	}
 
 	@Override
