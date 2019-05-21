@@ -107,8 +107,8 @@ public class Application {
 		Goon goon = new Goon("Goon", player);
 		gameMap.addActor(goon, 8, 10);
 		
-//		Ninja n = new Ninja("Ninja", player);
-//		gameMap.addActor(n, 2, 4);
+		Ninja n = new Ninja("Ninja", player);
+		gameMap.addActor(n, 2, 4);
 		
 		Q q = new Q("Q", (NewPlayer)player);
 		gameMap.addActor(q, 10, 8);

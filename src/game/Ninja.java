@@ -54,14 +54,19 @@ public class Ninja extends NewActor{
 		}
 		
 		else {
-			StunPowder sp = new StunPowder(target);
 			
-			Throw t = new Throw(this, target,sp);
 			
-			String result = t.execute(this, map);
-			display.println(result);
+			if(!target.checkStun()) {
+				StunPowder sp = new StunPowder(target);
+				Throw t = new Throw(this, target,sp);
+				String result = t.execute(this, map);
+				display.println(result);
+			}
 			
-			for (Exit exit :  map.locationOf(this).getExits()) {
+			
+			
+			
+			for (Exit exit : map.locationOf(this).getExits()) {
 				Location destination = exit.getDestination();
 				
 				if (destination.canActorEnter(this) && distance(destination,there) > currentDistance) {

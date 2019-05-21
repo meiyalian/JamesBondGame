@@ -65,8 +65,15 @@ public class NewPlayer extends NewActor{
 		if (map.locationOf(this).getGround() instanceof MoonCrater) {
 			
 		
-			display.println( Integer.toString(checkOxygenPoints()-1) + " oxygen points left");
+			display.println( Integer.toString(checkOxygenPoints()) + " oxygen points left");
 			
+			int oxygenPoint = this.checkOxygenPoints();
+			
+			if(oxygenPoint<= 0) {
+				
+				display.println( "No oxygen left. Going back to Earth. ");
+				return new MoveActorAction(earthMap.at(3, 2), "to Earth ");
+			}
 
 			for (Item item: this.getInventory() ) {
 				if (item instanceof OxygenTank) {
@@ -82,17 +89,13 @@ public class NewPlayer extends NewActor{
 				}
 			
 			
-			int oxygenPoint = this.checkOxygenPoints();
-		
-			if(oxygenPoint<= 0) {
-				
-				display.println( "No oxygen left. Going back to Earth. ");
-				return new MoveActorAction(earthMap.at(3, 2), "to Earth ");
-			}
 			
-			else {
-				return showMenu(actions, display);
-			}
+		
+		
+			
+	
+			return showMenu(actions, display);
+			
 			
 			}
 		
@@ -105,9 +108,10 @@ public class NewPlayer extends NewActor{
 			stunTurnCounter ++;
 			display.println(this.name + " has been stunned, cannot do anything in this turn.");
 
-			if (stunTurnCounter ==2) {
+			if (stunTurnCounter >=2) {
 				stunTurnCounter = 0;
 				isStunned = false;
+				
 			}
 			
 			return new SkipTurnAction();
@@ -158,8 +162,6 @@ public class NewPlayer extends NewActor{
 		do {
 			key = display.readChar();
 		} while (!keyToActionMap.containsKey(key));
-		
-		
 		
 		
 		return keyToActionMap.get(key);

@@ -18,7 +18,7 @@ public class OxygenTank extends Item {
 
 	public OxygenTank(Actor newCarrier) {
 		super("Oxygen tank", 'O');
-		oxygenPoints = 2;
+		oxygenPoints = 10;
 		carrier = newCarrier;
 	}
 	
