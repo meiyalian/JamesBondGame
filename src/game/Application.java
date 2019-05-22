@@ -22,7 +22,8 @@ public class Application {
 
 	public static void main(String[] args) {
 		World world = new World(new Display());
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new Door(), new RocketPad(),new MoonCrater());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new Door(), new RocketPad(),
+				 new MoonCrater());
 		GameMap gameMap, moonMap, marsMap;
 
 		// (x,y): x is horizontal, y is vertical
@@ -86,10 +87,12 @@ public class Application {
 		
 		
 		
-		NewActor player = new NewPlayer("Player", '@', 1, 100,gameMap);
+		NewActor player = new NewPlayer("Player", '@', 1, 50,gameMap);
 
 	
 		gameMap.at(2,1).setGround(new OxygenDispenser(gameMap,2,1,player));
+		
+		gameMap.at(0,3).setGround(new FirstAidPoint(gameMap,0,3));
 		
 		world.addPlayer(player, gameMap, 2, 2);
 		
@@ -119,7 +122,7 @@ public class Application {
 		RocketPlan rp = new RocketPlan();
 		gameMap.addItem(rp, 6, 2);
 		
-		Medicine m = new Medicine(10,1,1);
+		Medicine m = new Medicine(10,1,1,false);
 		gameMap.addItem(m, 1,1);
 		
 		

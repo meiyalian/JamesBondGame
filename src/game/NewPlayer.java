@@ -61,6 +61,8 @@ public class NewPlayer extends NewActor{
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		
+		display.println("Current hitpoints: " + Integer.toString(this.hitPoints));
+		
 		
 		if (map.locationOf(this).getGround() instanceof MoonCrater) {
 			

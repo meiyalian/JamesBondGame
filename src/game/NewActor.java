@@ -84,4 +84,9 @@ public abstract class NewActor extends Actor{
 		this.damage = (damage >= 0) ? damage:0;
 	}
 	
+	public int getHitpoint() {
+		return this.hitPoints;
+	}
+	
+	
 }
