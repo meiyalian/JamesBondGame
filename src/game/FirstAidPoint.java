@@ -25,7 +25,7 @@ public class FirstAidPoint extends Ground{
 	public Actions allowableActions(Actor actor, Location location, String direction){
 		Actions actions = new Actions();
 		if(actor instanceof NewPlayer) {
-			if(((NewPlayer) actor).getHitpoint()<50) {
+			if(((NewPlayer) actor).getHitpoint()<=5) {
 				
 				
 				if (((NewActor) actor).getHitpoint()<50) {
@@ -37,14 +37,13 @@ public class FirstAidPoint extends Ground{
 		}
 		
 		
-		
 		return actions;
 	}
 	
 
 	@Override
 	public boolean canActorEnter(Actor actor) {
-		if (actor instanceof NewPlayer && ((NewPlayer) actor).getHitpoint()<50) {
+		if (actor instanceof NewPlayer && ((NewPlayer) actor).getHitpoint()<=5) {
 			return true;
 		}
 		return false;
