@@ -23,7 +23,6 @@ public class OxygenTank extends Item {
 	}
 	
 	
-	
 	/**
 	 * method to change( subtract) the oxygen points of the tank
 	 */
@@ -31,6 +30,10 @@ public class OxygenTank extends Item {
 		this.oxygenPoints -=1;
 	}
 	
+	/**
+	 * method used by other classes, checking how many oxygen tank is this tank left
+	 * @return int the amount of the oxygen points
+	 */
 	
 	public int getPoints() {
 		return oxygenPoints;

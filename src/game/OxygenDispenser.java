@@ -38,12 +38,12 @@ public class OxygenDispenser extends Ground{
 	}
 	
 	
-	/**
-	 * if there is already an oxygen tank on the position of the oxygen dispenser or the oxgen 
-	 * dispenser is currently producing the oxygen tank, the press button action will not be 
-	 * added to the allowable actions list
-	 * 
-	 */
+//	
+//	if there is already an oxygen tank on the position of the oxygen dispenser or the oxgen 
+//	  dispenser is currently producing the oxygen tank, the press button action will not be 
+//	 added to the allowable actions list
+//	 
+	 
 	
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {
@@ -65,6 +65,8 @@ public class OxygenDispenser extends Ground{
 	
 	/**
 	 * the description of this dispenser item
+	 * 
+	 * @return description of the dispenser
 	 */
 	
 	public String description() {
@@ -93,13 +95,15 @@ public class OxygenDispenser extends Ground{
 	
 	
 	
-	/**
-	 * if there is an oxygen produced, player is allowed 
-	 * to enter the location and pick the oxygen tank up. 
-	 * 
-	 *Otherwise player cannot enter this position since the dispenser
-	 *is a machine rather than a ground. 
-	 */
+	
+//	  if there is an oxygen produced, player is allowed 
+//	  to enter the location and pick the oxygen tank up. 
+//	  
+//	 Otherwise player cannot enter this position since the dispenser
+//	 is a machine rather than a ground. 
+//	 
+	
+	 
 	
 	
 	@Override
