@@ -12,11 +12,11 @@ public class Medicine extends Item{
 	/**
 	 *  @param hp the amount of hit points the actor will receive when taking this medicine
 	 */
-	public Medicine(int hp) {
+	public Medicine(int hp, int x, int y) {
 		super("medicine",'*');
 		
 		this.healing_point = hp;
-		allowableActions.add(new GetHeal(hp));
+		allowableActions.add(new GetHeal(hp,x,y,this));
 		
 	}
 

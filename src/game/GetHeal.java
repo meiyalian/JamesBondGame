@@ -13,9 +13,17 @@ import edu.monash.fit2099.engine.Item;
 public class GetHeal extends Action{
 	
 	private int healing_point;
+	private int loca_x;
+	private int loca_y;
+	private Medicine medicine;
 	
-	public GetHeal(int hp) {
+	
+	
+	public GetHeal(int hp, int x, int y,Medicine item) {
 		healing_point = (hp > 0) ? hp:0;
+		loca_x = x;
+		loca_y = y;
+		medicine = item;
 		
 	}
 
@@ -24,12 +32,19 @@ public class GetHeal extends Action{
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
+		boolean inInventory = false;
 		actor.heal(healing_point);
 		for (Item i: actor.getInventory()) {
 			if (i instanceof Medicine) {
 				actor.removeItemFromInventory(i);
+				inInventory = true;
 				break;
 			}
+		}
+		
+		if (! inInventory) {
+			map.at(loca_x,loca_y).removeItem(medicine);
+			
 		}
 		return actor.toString() + " take the medicine and get healed by "+ String.valueOf(healing_point) + " points.";
 		

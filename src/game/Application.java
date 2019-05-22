@@ -119,8 +119,8 @@ public class Application {
 		RocketPlan rp = new RocketPlan();
 		gameMap.addItem(rp, 6, 2);
 		
-		Medicine m = new Medicine(10);
-		gameMap.addItem(m, 9, 7);
+		Medicine m = new Medicine(10,1,1);
+		gameMap.addItem(m, 1,1);
 		
 		
 //		Item portalEarth = Item.newFurniture("Portal", 'R');
