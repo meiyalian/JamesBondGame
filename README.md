@@ -29,6 +29,7 @@
 - An enum named `SkillList` used to store all of the skills in the game.
 ##### List of all skills
 - `Shouting`: The skilled entity will shout an insult at its target.
+- `SpaceTravel`: The entity possess this skill can travel to the moon.
 ##### Pros
 - Centralised. Instead of having skills in different sections of the code, all skills in the game is in this enum, so programmers only have to look for one place for different skills.
 
@@ -156,6 +157,14 @@
 ##### Cons
 - Dependency on `Actors` and `Items` in order to achieve the functionality of receiving items and teleport actors.
 
+### Oxygen Dispenser
+***
+##### Design
+- Produces `OxygenTanks`.
+- Compare to extends from `Item` class, the `OxygenDispenser` is better to extends from the `Ground` class since it can not be moved/picked up. 
+- The player can only enter into this `Location` (where the `OxygenDispenser` is at, in order to pick up the `OxygenTank`), if there is an `OxygenTank` produced. 
+- A `PressButtonAction` is avaliable to the player when they're near the `OxygenDispenser`. If the `Action` is invoked, it will call the produce() method inside the `OxygenDispenser`. Then it is the `OxygenDispenser`’s responsibility to check if the condition is met (If there is already an `OxygenTank` in its location) and to decide if it needs to produce the `OxygenTank` item. 
+
 
 
 ## **Items**
@@ -207,6 +216,23 @@
 - Flexibility. As a `WeaponItem` it can be used by any `Actor` that owns this item and is allowed to `Throw`.
 ##### Cons
 - If this item will only be possessed by very few `Actors`, then this class unnecessarily increased the complexity of the game. 
+
+### Oxygen Tank
+***
+##### Design
+- Create a `OxygenTank` class that extends `Item`.
+- In each play turn, the program will check if the player is on the moon. If the player is on the moon, in each play turn the program will call the usedOxygen() method inside the `OxygenTank` to reduce 1 oxygen point. 
+- It is assumed that there will be oxygen provided inside the rocket (`RocketPad`). Hence, when the player stays inside the rocket (even on the moon), the oxygen points will not go down. 
+- It will also check the inventory list of the `Player` in each play turn, if an empty `OxygenTank` (contains 0 oxygen point) is found, this `Item` will be removed. 
+- There is also a checkOxygenPoints() method added in the `Player` class to calculate how many oxygen points does the `Player` have. A message about the information of current oxygen points owned by the player will be printed in every play turn once the player arrives the moon and gets out of the rocket.
+- In each play turn, the program will check if the total amount of oxygen points owned by the `Player`. Once it reaches 0, the player will be sent back to Earth. 
+
+### Space Suit
+***
+##### Design
+- Create a `SpaceSuit` class that extends `Item`. 
+- Has `SpaceTravel` from the enum `SkillList`. 
+- After a rocket is built, the `RocketPad` will check if the `Player` has the `SpaceTravel` skill (i.e. If the player has the `SpaceSuit`), and also if the `Player` has at least 1 oxygen point to decide if the `Player` could go to the moon.
 
 ### MagicPill (Bonus)
 ***
@@ -263,6 +289,8 @@
 ##### Design
 - Class extends from `NewActor`, uses to replace the `Player` class in the engine .
 - Compare to the `Player` class, this class, in each turn, it will check if the `Player` is stunned or not. If the `Player` is stunned, the playturn function will return `SkipTurnAction` for 2 turns. 
+- Has checkOxygenPoints() method that calculates how many oxygen points does the `Player` have left.
+
 ##### Cons
 - Since the class is extended from the `NewActor` class, it cannot extends from the `Player` class in the engine due to the conflict of two subclasses. Hence, in the playturn function, a part of code in the engine `Player` class is copy-pasted to this class. 
 
