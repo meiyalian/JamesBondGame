@@ -13,6 +13,24 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.Player;
 import edu.monash.fit2099.engine.World;
+import game.Actors.DoctorMaybe;
+import game.Actors.Goon;
+import game.Actors.Grunt;
+import game.Actors.NewActor;
+import game.Actors.NewPlayer;
+import game.Actors.Ninja;
+import game.Actors.Q;
+import game.Grounds.Door;
+import game.Grounds.FirstAidPoint;
+import game.Grounds.Floor;
+import game.Grounds.MoonCrater;
+import game.Grounds.OxygenDispenser;
+import game.Grounds.RocketPad;
+import game.Grounds.Wall;
+import game.Items.Medicine;
+import game.Items.RocketPlan;
+import game.Items.Trap;
+import game.Items.spaceSuit;
 /**
  * 
  * The main driver class for the entire project, entry point of the game.
@@ -51,16 +69,16 @@ public class Application {
 		// The map for moon
 		List<String> moon = Arrays.asList(
 				"oooooooooooooooooooooooooo",     // 0
-				"oooooooooooooooooooooooooo",		// 1
-				"oooooooooooooooooooooooooo",		// 2
+				"oooooooooooooooooooooooooo",	  // 1
+				"oooooooooooooooooooooooooo",	  // 2
 				"oooooooooooooooooooooooooo",     // 3
-				"oooooooooooooooooooooooooo",		// 4
-				"oooooooooooooooooooooooooo",		// 5
+				"oooooooooooooooooooooooooo",	  // 4
+				"oooooooooooooooooooooooooo",	  // 5
 				"oooooooooooooooooooooooooo",     // 6
-				"oooooooooooooooooooooooooo",		// 7
-				"oooooooooooooooooooooooooo",		// 8
+				"oooooooooooooooooooooooooo",	  // 7
+				"oooooooooooooooooooooooooo",	  // 8
 				"oooooooooooooooooooooooooo",     // 9
-				"oooooooooooooooooooooooooo",		// 10
+				"oooooooooooooooooooooooooo",	  // 10
 				"oooooooooooooooooooooooooo");    // 11
 		
 		moonMap = new GameMap(groundFactory, moon);
@@ -91,6 +109,9 @@ public class Application {
 
 	
 		gameMap.at(2,1).setGround(new OxygenDispenser(gameMap,2,1,player));
+		Trap trap1 = new Trap(gameMap, 2, 1, false, 'D');
+		trap1.setDamageHealth(10);
+		gameMap.at(2, 1).addItem(trap1);
 		
 		gameMap.at(0,3).setGround(new FirstAidPoint(gameMap,0,3));
 		
@@ -126,19 +147,18 @@ public class Application {
 		gameMap.addItem(m, 1,1);
 		
 		
-//		Item portalEarth = Item.newFurniture("Portal", 'R');
-//		portalEarth.getAllowableActions().add(new MoveActorAction(moonMap.at(10, 1), "to Moon"));
-//		gameMap.at(16, 2).addItem(portalEarth);
-		
-		RocketPad earthActRp = new RocketPad();
-		earthActRp.addBody();
-		earthActRp.addEngine();
-		gameMap.at(3, 2).setGround(earthActRp);
-		
 		Item portalEarth = Item.newFurniture("Portal", 'R');
 		portalEarth.getAllowableActions().add(new MoveActorAction(moonMap.at(10, 1), "to Moon"));
-		gameMap.at(3, 2).addItem(portalEarth);
+		gameMap.at(16, 2).addItem(portalEarth);
 		
+//		RocketPad earthActRp = new RocketPad();
+//		earthActRp.addBody();
+//		earthActRp.addEngine();
+//		gameMap.at(3, 2).setGround(earthActRp);
+//		
+//		Item portalEarth = Item.newFurniture("Portal", 'R');
+//		portalEarth.getAllowableActions().add(new MoveActorAction(moonMap.at(10, 1), "to Moon"));
+//		gameMap.at(3, 2).addItem(portalEarth);
 		
 		
 		
@@ -149,14 +169,30 @@ public class Application {
 		moonActRp.addEngine();
 		moonMap.at(10, 1).setGround(moonActRp);
 		
+		Item portalMoon = Item.newFurniture("Portal", 'R');
+		portalMoon.getAllowableActions().add(new MoveActorAction(gameMap.at(16, 2), "to Earth"));
+		moonMap.at(10, 1).addItem(portalMoon);
+		
+		moonMap.at(12, 1).setGround(new OxygenDispenser(moonMap, 12, 1, player));
+		Trap trap2 = new Trap(moonMap, 12 , 1, false, 'D');
+		trap2.setDamageHealth(10);
+		moonMap.at(12, 1).addItem(trap2);
+		
+		Grunt grunt3 = new Grunt("Mongo", player);
+		moonMap.addActor(grunt3, 5, 0);
+		
+		Grunt grunt4 = new Grunt("Norbert", player);
+		moonMap.addActor(grunt4, 10, 10);
+		
+		Goon goon2 = new Goon("Goon", player);
+		moonMap.addActor(goon2, 8, 10);
+		
+		Ninja ninja2 = new Ninja("Ninja", player);
+		moonMap.addActor(ninja2, 2, 4);
 		
 //		Item portalMoon = Item.newFurniture("Portal", 'R');
-//		portalMoon.getAllowableActions().add(new MoveActorAction(gameMap.at(16, 2), "to Earth"));
+//		portalMoon.getAllowableActions().add(new MoveActorAction(gameMap.at(3, 2), "to Earth"));
 //		moonMap.at(10, 1).addItem(portalMoon);
-		
-		Item portalMoon = Item.newFurniture("Portal", 'R');
-		portalMoon.getAllowableActions().add(new MoveActorAction(gameMap.at(3, 2), "to Earth"));
-		moonMap.at(10, 1).addItem(portalMoon);
 		
 		//----------------------------------------------------------------------------------
 		
