@@ -69,7 +69,7 @@ public class Application {
 		gameMap = new GameMap(groundFactory, map);
 		world.addMap(gameMap);
 		
-		
+		//-
 		// The map for moon
 		List<String> moon = Arrays.asList(
 				"oooooooooooooooooooooooooo",     // 0
