@@ -39,7 +39,7 @@ import game.Items.spaceSuit;
 public class Application {
 
 	public static void main(String[] args) {
-		World world = new World(new Display());
+		NewWorld world = new NewWorld(new Display());
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new Door(), new RocketPad(),
 				 new MoonCrater());
 		GameMap gameMap, moonMap, marsMap;
