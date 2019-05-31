@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.AttackAction;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DropItemAction;
+import game.Actions.UnlockAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
@@ -47,7 +48,7 @@ public abstract class NewActor extends Actor{
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		
 		for (Action action : actions) {
-			if (action instanceof DropItemAction || action instanceof PickUpItemAction)
+			if (action instanceof DropItemAction || action instanceof PickUpItemAction || action instanceof UnlockAction)
 				actions.remove(action);
 		}
 		return super.playTurn(actions,  map,  display);

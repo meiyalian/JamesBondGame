@@ -20,6 +20,7 @@ import game.Actors.NewActor;
 import game.Actors.NewPlayer;
 import game.Actors.Ninja;
 import game.Actors.Q;
+import game.Actors.YugoMaxx;
 import game.Grounds.Door;
 import game.Grounds.FirstAidPoint;
 import game.Grounds.Floor;
@@ -27,9 +28,12 @@ import game.Grounds.MoonCrater;
 import game.Grounds.OxygenDispenser;
 import game.Grounds.RocketPad;
 import game.Grounds.Wall;
+import game.Grounds.Water;
+import game.Items.Key;
 import game.Items.Medicine;
 import game.Items.RocketPlan;
 import game.Items.Trap;
+import game.Items.WaterPistol;
 import game.Items.spaceSuit;
 /**
  * 
@@ -41,7 +45,7 @@ public class Application {
 	public static void main(String[] args) {
 		NewWorld world = new NewWorld(new Display());
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new Door(), new RocketPad(),
-				 new MoonCrater());
+				 new MoonCrater(), new Water());
 		GameMap gameMap, moonMap, marsMap;
 
 		// (x,y): x is horizontal, y is vertical
@@ -70,7 +74,7 @@ public class Application {
 		List<String> moon = Arrays.asList(
 				"oooooooooooooooooooooooooo",     // 0
 				"oooooooooooooooooooooooooo",	  // 1
-				"oooooooooooooooooooooooooo",	  // 2
+				"ooooooWooooooooooooooooooo",	  // 2
 				"oooooooooooooooooooooooooo",     // 3
 				"oooooooooooooooooooooooooo",	  // 4
 				"oooooooooooooooooooooooooo",	  // 5
@@ -105,8 +109,8 @@ public class Application {
 		
 		
 		
-		NewActor player = new NewPlayer("Player", '@', 1, 50,gameMap);
-
+		NewActor player = new NewPlayer("Player", '@', 1, 50, gameMap);
+		
 	
 		gameMap.at(2,1).setGround(new OxygenDispenser(gameMap,2,1,player));
 		Trap trap1 = new Trap(gameMap, 2, 1, false, 'D');
@@ -178,6 +182,9 @@ public class Application {
 		trap2.setDamageHealth(10);
 		moonMap.at(12, 1).addItem(trap2);
 		
+		WaterPistol wp = new WaterPistol();
+		moonMap.at(7, 3).addItem(wp);
+		
 		Grunt grunt3 = new Grunt("Mongo", player);
 		moonMap.addActor(grunt3, 5, 0);
 		
@@ -189,6 +196,9 @@ public class Application {
 		
 		Ninja ninja2 = new Ninja("Ninja", player);
 		moonMap.addActor(ninja2, 2, 4);
+		
+		YugoMaxx yugo = new YugoMaxx("YugoMaxx", player);
+		moonMap.addActor(yugo, 20, 5);
 		
 //		Item portalMoon = Item.newFurniture("Portal", 'R');
 //		portalMoon.getAllowableActions().add(new MoveActorAction(gameMap.at(3, 2), "to Earth"));

@@ -15,7 +15,9 @@ import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.SkipTurnAction;
 import game.Actions.EndGame;
 import game.Grounds.MoonCrater;
+import game.Grounds.RocketPad;
 import game.Items.OxygenTank;
+import game.Items.UnconsciousYugoMaxx;
 
 
 /**
@@ -66,8 +68,17 @@ public class NewPlayer extends NewActor{
 	
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
+
+		actions.add(new EndGame(this, 0));
 		
-		actions.add(new EndGame(this, 0));	
+		Location loc;
+		for (Item item : this.getInventory())
+			if (item instanceof UnconsciousYugoMaxx) {
+				loc = map.locationOf(this);
+				if (loc.getGround() instanceof RocketPad && loc.x() == 16 && loc.y() == 2) 
+					this.won();
+				break;
+			}
 		
 		display.println("Current hitpoints: " + Integer.toString(this.hitPoints));
 		
