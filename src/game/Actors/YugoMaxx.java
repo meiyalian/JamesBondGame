@@ -56,8 +56,9 @@ public class YugoMaxx extends NewActor{
 					break;
 				}
 			}
+			return actions;
 		}
-		return actions;
+		return super.getAllowableActions(otherActor, direction, map);
 	}
 	
 	@Override
