@@ -14,19 +14,22 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 import game.Actions.ActionFactory;
+import game.Actions.SquirtAction;
 import game.Actions.WanderingBehaviour;
+import game.Items.RocketBody;
 import game.Items.RocketEngine;
 import game.Items.UnconsciousYugoMaxx;
+import game.Items.WaterPistol;
 
 public class YugoMaxx extends NewActor{
 	
-	private boolean hasExoskeleton = false;
+	private boolean hasExoskeleton = true;
 	private NewActor player;
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
 	
 	public YugoMaxx(String name, NewActor player) {
 			
-			super(name, 'Y', 3, 15);
+			super(name, 'Y', 3, 20);
 			this.player = player;
 			this.damage = 10;
 			addBehaviour(new WanderingBehaviour());
@@ -38,9 +41,23 @@ public class YugoMaxx extends NewActor{
 			this.addItemToInventory(item);
 		}
 	
+	public void DestroyExoskeleton() {
+		this.hasExoskeleton = false;
+	}
+	
 	@Override
-	public Actions getAllowableActions() {
-		
+	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+		Actions actions = new Actions();
+
+		if (hasExoskeleton) {
+			for (Item item : otherActor.getInventory()) {
+				if (item instanceof WaterPistol) {
+					actions.add(new SquirtAction(this.player, this, (WaterPistol) item));
+					break;
+				}
+			}
+		}
+		return actions;
 	}
 	
 	@Override
