@@ -13,6 +13,7 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.SkipTurnAction;
+import game.Actions.EndGame;
 import game.Grounds.MoonCrater;
 import game.Items.OxygenTank;
 
@@ -29,6 +30,7 @@ public class NewPlayer extends NewActor{
 	
 	private int stunTurnCounter = 0; // counters that record how many turns has the player been stunned
 	private GameMap earthMap;
+	private boolean quit, won;
 	
 	
 
@@ -44,6 +46,8 @@ public class NewPlayer extends NewActor{
 	public NewPlayer(String name, char displayChar, int priority, int hitPoints, GameMap homeMap) {
 		super(name, displayChar, priority, hitPoints);
 		earthMap = homeMap;
+		this.quit = false;
+		this.won = false;
 	}
 	
 	
@@ -62,6 +66,8 @@ public class NewPlayer extends NewActor{
 	
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
+		
+		actions.add(new EndGame(this, 0));	
 		
 		display.println("Current hitpoints: " + Integer.toString(this.hitPoints));
 		
@@ -92,11 +98,7 @@ public class NewPlayer extends NewActor{
 					}
 				}
 			
-			
-			
 		
-		
-			
 	
 			return showMenu(actions, display);
 			
@@ -186,8 +188,21 @@ public class NewPlayer extends NewActor{
 	}
 	
 	
-
+	public void quit() {
+		this.quit = true;
+	}
 	
+	public boolean isQuitting() {
+		return this.quit;
+	}
+	
+	public void won() {
+		this.won = true;
+	}
+	
+	public boolean hasWon() {
+		return this.won;
+	}
 }
 
 
