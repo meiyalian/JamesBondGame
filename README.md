@@ -1,4 +1,4 @@
-# **FIT2099 Assignment Design Rationale**
+# **Design Rationale**
 ##### This document explains the design choices that were made to implement the required funtionality to the game, as well as the pros and cons for each of the design choices.
 
 ## **Map**
